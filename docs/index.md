@@ -14,7 +14,7 @@ nav_order: 0
 
 ## Team members
 
-### [Jane Dane]
+### [Kubilay Jessa, Ömer Öztürk]
 
 About
 : Some info about Jane
