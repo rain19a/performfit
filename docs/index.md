@@ -17,7 +17,7 @@ nav_order: 0
 ### [Kubilay Jessa]
 
 About
-: Some info about Jane
+: Some info about Kubilay
 
 Matr.-Nr.
 : 1234567
@@ -25,7 +25,7 @@ Matr.-Nr.
 ### [Ömer Öztürk]
 
 About
-: Some info about Joe
+: Some info about Ömer
 
 Matr.-Nr.
 : 1234567
