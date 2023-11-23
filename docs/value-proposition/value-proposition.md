@@ -16,7 +16,8 @@ nav_order: 1
 {: toc }
 </details>
 
-## [The problem: Viele Menschen, die ihre Fitness verbessern möchten, verlieren den Überblick über ihr Training oder haben Schwierigkeiten, regelmäßige Fortschritte zu erzielen. Das Fehlen eines strukturierten Ansatzes und einer einfachen Methode zur Verfolgung ihrer Aktivitäten und Schlafqualität kann demotivierend wirken]
+## [The problem]
+Viele Menschen, die ihre Fitness verbessern möchten, verlieren den Überblick über ihr Training oder haben Schwierigkeiten, regelmäßige Fortschritte zu erzielen. Das Fehlen eines strukturierten Ansatzes und einer einfachen Methode zur Verfolgung ihrer Aktivitäten und Schlafqualität kann demotivierend wirken
 
 ## [Our solution: Unsere App bietet einen umfassenden Trainingstracker, der es Nutzern ermöglicht, ihre täglichen Trainingsaktivitäten zu verzeichnen. Wir bieten zudem spezialisierte Workoutpläne, die auf die Fähigkeiten und Ziele der Nutzer zugeschnitten sind – egal ob Anfänger oder Fortgeschrittener. Zusätzlich können Nutzer täglich ihre Schlafqualität und Trainingsleistung mit einfachen Ja- oder Nein-Antworten verfolgen, was im Fortschrittstracker festgehalten wird.]
 
