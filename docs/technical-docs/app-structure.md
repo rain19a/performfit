@@ -17,9 +17,6 @@ nav_order: 1
 {: toc }
 </details>
 
-ChatGPT
-ChatGPT
-Natürlich, hier ist das nummerierte Inhaltsverzeichnis mit Unterpunkten:
 
 Inhaltsverzeichnis
 
