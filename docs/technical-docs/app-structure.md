@@ -23,10 +23,10 @@ Inhaltsverzeichnis
 1. Einleitung
 2. Value Proposition
 3. App-Struktur
-3.1 App-Verhalten
-3.2 Datenmodell
-3.3 Framework
-3.4 UML-Diagramm
+- App-Verhalten
+- Datenmodell
+- Framework
+- UML-Diagramm
 4. Designentscheidungen
 5. Nutzerbewertung
 6. Erreichte und verfehlte Ziele
