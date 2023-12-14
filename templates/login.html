@@ -1,0 +1,21 @@
+<!-- templates/login.html -->
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login-Seite</title>
+</head>
+<body>
+    <h1>Login-Seite</h1>
+    <form action="{{ url_for('login') }}" method="post">
+        <input type="text" name="username" placeholder="Benutzername" required><br>
+        <input type="password" name="password" placeholder="Passwort" required><br>
+        <input type="submit" value="Einloggen"><br>
+        <button type="button" onclick="location.href='/register';">Registrieren</button><br>
+        <!-- Der Button unten führt zur Registrierungsseite -->
+        <button type="button" onclick="location.href='/';">Zurück zur Startseite</button>
+    </form>
+</body>
+</html>
+

@@ -1,0 +1,54 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PerformFit Startseite</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+        .bg {
+            /* Das Bild als Hintergrund verwenden */
+            background-image: url('{{ url_for('static', filename='Bild PerformFit.png') }}');
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        /* Position der Buttons am unteren Ende des Bildschirms */
+        .button-container {
+            position: absolute;
+            bottom: 10%; /* Position von unten angepasst */
+            width: 100%;
+            text-align: center;
+        }
+        .button {
+            padding: 10px 20px;
+            margin: 10px;
+            color: white;
+            background: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block; /* Buttons nebeneinander */
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg">
+        <!-- Button-Container für Login und Registrieren -->
+        <div class="button-container">
+            <a href="/login" class="button">Login</a>
+            <a href="/register" class="button">Registrieren</a>
+        </div>
+    </div>
+
+</body>
+</html>

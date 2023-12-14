@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrierungsseite</title>
+    <style>
+        /* Stil für die Fehlermeldung */
+        .error-message {
+            color: red;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form action="{{ url_for('register') }}" method="post">
+        <h1>Registrierungsseite</h1>
+        <!-- Fehlermeldung anzeigen, wenn vorhanden -->
+        {% if error_message %}
+            <div class="error-message">{{ error_message }}</div>
+        {% endif %}
+        <input type="text" name="name" placeholder="Name" required><br>
+        <input type="email" name="email" placeholder="Email" required><br>
+        <input type="text" name="username" placeholder="Benutzername" required><br>
+        <input type="password" name="password" placeholder="Passwort" required><br>
+        <input type="submit" value="Registrieren"><br>
+        <button type="button" onclick="location.href='/login';">Login</button><br>
+        <button type="button" onclick="location.href='/';">Gastzugang</button>
+    </form>
+</body>
+</html>
+
+
