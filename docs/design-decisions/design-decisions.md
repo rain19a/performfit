@@ -52,4 +52,5 @@ Kann für Anfänger oder Gelegenheitsnutzer zu detailliert sein.
 Erfordert genaue Eingaben von den Nutzern.
 
 Nach eingehender Bewertung der Vor- und Nachteile haben wir uns entschieden, in unserer Datenbankstruktur für Workouts die Attribute Dauer und Intensität nicht aufzunehmen.
+
 ---
