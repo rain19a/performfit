@@ -5,9 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login-Seite</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
 </head>
 <body>
     <h1>Login-Seite</h1>
+    {% if error_message %}
+        <p class="error">{{ error_message }}</p>
+    {% endif %}
     <form action="{{ url_for('login') }}" method="post">
         <input type="text" name="username" placeholder="Benutzername" required><br>
         <input type="password" name="password" placeholder="Passwort" required><br>
@@ -18,4 +26,3 @@
     </form>
 </body>
 </html>
-

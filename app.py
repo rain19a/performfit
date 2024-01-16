@@ -58,20 +58,23 @@ def register():
 # Login Route
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    error_message = None  # Variable für Fehlermeldungen
+
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
 
         user = User.query.filter_by(username=username).first()
         if user and check_password_hash(user.password_hash, password):
-            # TODO: Hier Logik einfügen, um zu überprüfen, ob der Benutzer den Fragenkatalog ausgefüllt hat
+            # Hier Logik einfügen, um zu überprüfen, ob der Benutzer den Fragenkatalog ausgefüllt hat
             # Vorläufige Weiterleitung zur Startseite
-            return redirect(url_for('fragenkatalog'))
+            return redirect(url_for('dashboard'))
         else:
-            # Falscher Benutzername oder Passwort
-            return "Falscher Benutzername oder Passwort"  # oder eine andere Fehlerbehandlung
+            # Setzen der Fehlermeldung
+            error_message = "Falscher Benutzername oder Passwort."
 
-    return render_template('login.html')
+    # Fehlermeldung an das Template übergeben
+    return render_template('login.html', error_message=error_message)
 
 # Route für die Startseite
 @app.route('/')
@@ -91,7 +94,23 @@ def submit_fragenkatalog():
     zielgewicht = request.form.get('zielgewicht')
     # Daten verarbeiten (z.B. speichern oder auswerten)
 
-    return redirect(url_for('index')) # Zur Index-Seite umleiten
+    return redirect(url_for('dashboard')) # Zu Dashbord umleiten
+
+#Route für Dashboard
+@app.route('/dashboard', methods=['GET', 'POST'])
+def dashboard():
+    if request.method == 'POST':
+        # Nehmen Sie hier die Daten entgegen und verarbeiten Sie diese entsprechend
+        workout_completed = 'workout' in request.form
+        slept_well = 'sleep' in request.form
+        
+        # Hier könnten Sie die Daten speichern oder Logik implementieren
+        print(f"Workout completed: {workout_completed}, Slept well: {slept_well}")
+
+        # Weiterleitung oder Aktualisierung der Seite
+        return redirect(url_for('dashboard'))
+    
+    return render_template('dashboard.html')
 
 # Anwendungsstartpunkt
 if __name__ == '__main__':

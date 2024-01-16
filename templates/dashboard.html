@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            margin: auto;
+        }
+        label {
+            display: block;
+            margin: 10px 0;
+        }
+        .checkbox-group {
+            margin: 5px 0;
+        }
+        .navigation {
+            text-align: center;
+            margin-top: 20px;
+        }
+        a {
+            display: inline-block;
+            margin: 0 10px;
+            text-decoration: none;
+            color: #007bff;
+            background-color: #e7e7e7;
+            border: 1px solid #ddd;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #ddd;
+        }
+        .logout {
+            display: block;
+            margin-top: 20px;
+            text-align: right;
+        }
+        .logout a {
+            color: #fff;
+            background-color: #f44336;
+        }
+        .logout a:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <div class="logout">
+        <a href="/logout">Logout</a>
+    </div>
+    <h1>Dein Dashboard</h1>
+    <form action="{{ url_for('dashboard') }}" method="post">
+        <div class="checkbox-group">
+            <input type="checkbox" name="workout" id="workout">
+            <label for="workout">Hast du dein Workout heute geschafft?</label>
+        </div>
+
+        <div class="checkbox-group">
+            <input type="checkbox" name="sleep" id="sleep">
+            <label for="sleep">Hast du gut geschlafen?</label>
+        </div>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <div class="navigation">
+        <a href="/workout-plan">Workout-Plan</a>
+        <a href="/progress-entry">Eintrag Fortschritt</a>
+        <a href="/progress-tracker">Fortschrittstracker</a>
+    </div>
+</body>
+</html>
+
