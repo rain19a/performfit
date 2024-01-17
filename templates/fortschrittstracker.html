@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Fortschrittstracker</title>
+    <!-- Einbinden der Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .day-box {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2px;
+        }
+        .day-sleep {
+            background-color: lightgreen;
+        }
+        .day-workout {
+            background-color: lightpurple;
+        }
+        .day-none {
+            background-color: #f8f9fa; /* Bootstrap Grau */
+        }
+        .week-container {
+            display: flex;
+            justify-content: start;
+            margin-bottom: 10px;
+        }
+        .week-day {
+            min-width: 80px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h2 class="mb-4">Fortschrittstracker</h2>
+        <!-- Woche für Woche -->
+        {% for week in structured_data %}
+            <div class="week-container">
+                <!-- Wochentage -->
+                {% for day in (0..6) %}
+                    <div class="day-box {{ week[day].slept_well if week[day] else 'day-none' }}">
+                        <span>S</span>
+                    </div>
+                    <div class="day-box {{ week[day].workout_completed if week[day] else 'day-none' }}">
+                        <span>W</span>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+    <!-- Bootstrap JS und Abhängigkeiten -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
