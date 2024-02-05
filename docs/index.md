@@ -3,14 +3,10 @@ title: Home
 nav_order: 0
 ---
 
-{: .attention }
-> Any text enclosed by `[ ]` are placeholders, including the opening and closing brackets.
->
-> You may delete this `attention` box.
-
 # [PerformFit]
 
-[Project description]
+PerformFit transformiert Deine Fitnessroutine durch Eigeninitiative und Motivation. Unsere App kombiniert eine intuitive Oberfläche mit einem innovativen Grid-Graphen, die es Dir ermöglichen, Workouts selbst einzutragen und Fortschritte visuell zu verfolgen. Wir fördern Selbstbestimmung und kontinuierlichen Antrieb, damit Du Deine Ziele nicht nur erreichst, sondern übertriffst. 
+PerformFit – Dein Weg, Dein Tempo, Dein Erfolg
 
 ## Team members
 
