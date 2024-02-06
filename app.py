@@ -8,7 +8,12 @@ from datetime import date
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 
 
+#neu
+app.config['SECRET_KEY'] = 'ein-geheimer-schlüssel'  # Setzen Sie einen sicheren Wert
 
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'  # Legen Sie die Route fest, zu der umgeleitet wird, wenn @login_required scheitert
 
 # Route für die Registrierungsseite
 @app.route('/register', methods=['GET', 'POST'])
@@ -37,7 +42,10 @@ def register():
 
     return render_template('registration.html', error_message=error_message)
 
-
+#neu login manager
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 
 # Login Route
