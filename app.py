@@ -77,11 +77,13 @@ def index():
 
 # Route für den Fragekatalog
 @app.route('/fragenkatalog')
+@login_required
 def fragenkatalog():
     return render_template('fragenkatalog.html')
 
 # Route für die Verarbeitung des Fragekatalogs
 @app.route('/submit_fragenkatalog', methods=['POST'])
+@login_required
 def submit_fragenkatalog():
     gewicht = request.form.get('gewicht')
     zielgewicht = request.form.get('zielgewicht')
@@ -89,6 +91,7 @@ def submit_fragenkatalog():
 
 # Route für Dashboard
 @app.route('/dashboard', methods=['GET', 'POST'])
+@login_required
 def dashboard():
     if request.method == 'POST':
         user_id = 1  # Ersetzen Sie dies mit der tatsächlichen Benutzer-ID
