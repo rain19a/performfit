@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash
 from flask import Flask
+from flask_login import UserMixin
 
 # Flask-Anwendung erstellen
 app = Flask(__name__)
@@ -13,7 +14,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # Datenbankmodell für die Benutzer
-class User(db.Model):
+class User(UserMixin, db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)

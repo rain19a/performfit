@@ -5,8 +5,14 @@ from flask import jsonify
 from db import app, db, User, Progress
 from datetime import timedelta
 from datetime import date
-from flask_login import login_user, login_required, logout_user, current_user
+from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 
+#neu
+app.config['SECRET_KEY'] = 'ein-geheimer-schlüssel'  # Setzen Sie einen sicheren Wert
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'  # Legen Sie die Route fest, zu der umgeleitet wird, wenn @login_required scheitert
 
 # Route für die Registrierungsseite
 @app.route('/register', methods=['GET', 'POST'])
@@ -35,6 +41,12 @@ def register():
 
     return render_template('registration.html', error_message=error_message)
 
+#neu login manager
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+
 # Login Route
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -50,6 +62,12 @@ def login():
             return "Falscher Benutzername oder Passwort"
 
     return render_template('login.html')
+
+#neu logout route
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
 
 # Route für die Startseite
 @app.route('/')
@@ -102,11 +120,9 @@ def dashboard():
 
 
 @app.route('/fortschritt')
+@login_required
 def fortschritt():
-    # Hier sollte die Benutzer-ID aus der Sitzung oder dem Login-Manager geholt werden
-    # Zum Beispiel (hier pseudocode, abhängig von Ihrer Authentifizierungsimplementierung):
-    # user_id = session['user_id'] oder user_id = current_user.id
-    user_id = 1  # Diese Zeile dient nur als Platzhalter
+    user_id = current_user.get_id()  # Die tatsächliche Benutzer-ID des eingeloggten Benutzers verwenden
 
     start_date = date.today() - timedelta(days=364)
     
@@ -116,15 +132,12 @@ def fortschritt():
     ).order_by(Progress.date.asc()).all()
     
     if not progress_data:
-        # Hier können Sie entscheiden, ob Sie eine Fehlermeldung oder leere Listen zurückgeben
         error_message = "Keine Fortschrittsdaten verfügbar."
         return render_template('fortschritt.html', error_message=error_message)
 
-    # Vorbereiten der Daten für die Darstellung im Grid
     slept_well_data = [{'date': p.date.strftime('%Y-%m-%d'), 'value': p.slept_well} for p in progress_data]
     workout_data = [{'date': p.date.strftime('%Y-%m-%d'), 'value': p.workout_completed} for p in progress_data]
     
-    # Daten an die HTML-Vorlage senden
     return render_template('fortschritt.html', slept_well_data=slept_well_data, workout_data=workout_data)
 
 
