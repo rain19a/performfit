@@ -5,7 +5,7 @@ nav_order: 4
 ---
 
 {: .label }
-[Jane Dane]
+[Ömer Öztürk]
 
 # [Summary of individual contributions]
 {: .no_toc }
@@ -17,14 +17,14 @@ nav_order: 4
 {: toc }
 </details>
 
-## [Jane Dane]
+## [Ömer Öztürk]
 
 Contributions
 : Jane's first contribution
 : Jane's second contribution
 : ...
 
-## [Joe Doe]
+## [Kubilay Jessa]
 
 Contributions
 : Joe's first contribution

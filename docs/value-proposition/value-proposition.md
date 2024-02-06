@@ -4,7 +4,7 @@ nav_order: 1
 ---
 
 {: .label }
-[Kubilay Jessa]
+[Ömer Öztürk]
 
 # [Value proposition]
 Unsere App ist die ideale Lösung für alle, die ihre Trainingsfortschritte präzise verfolgen und ihre Fitnessziele erreichen möchten. Wir bieten einen benutzerfreundlichen Trainingstracker, passende Workoutpläne für Anfänger und Fortgeschrittene und einzigartige Einblicke in den Zusammenhang zwischen Trainingserfolgen und Schlafqualität. Mit unserer App bleiben Nutzer fokussiert, erzielen messbare Ergebnisse und verbessern ihr allgemeines Wohlbefinden.
