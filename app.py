@@ -94,7 +94,7 @@ def submit_fragenkatalog():
 @login_required
 def dashboard():
     if request.method == 'POST':
-        user_id = 1  # Ersetzen Sie dies mit der tatsächlichen Benutzer-ID
+        user_id = current_user.get_id()
         workout_completed = 'workout' in request.form
         slept_well = 'sleep' in request.form
 

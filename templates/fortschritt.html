@@ -30,7 +30,7 @@
         <div class="mt-3">
             <h4>Gut geschlafen</h4>
             <div id="slept-well-grid" class="grid">
-                <!-- JavaScript wird hier die Quadrate einfügen -->
+                <!-- Die Quadrate werden durch JavaScript eingefügt -->
             </div>
         </div>
 
@@ -38,7 +38,7 @@
         <div class="mt-3">
             <h4>Workout geschafft</h4>
             <div id="workout-grid" class="grid">
-                <!-- JavaScript wird hier die Quadrate einfügen -->
+                <!-- Die Quadrate werden durch JavaScript eingefügt -->
             </div>
         </div>
     </div>
@@ -48,20 +48,22 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <script>
-        // Beispiel: JavaScript zum Einfügen der Quadrate
+    <!-- Daten von Flask an JavaScript übergeben und Grid erstellen -->
+    <script type="text/javascript">
         function createGrid(containerId, classNameTrue, classNameFalse, data) {
             const container = document.getElementById(containerId);
-            for (let i = 0; i < 365; i++) {
+            container.innerHTML = ''; // Vorhandenen Inhalt löschen
+            data.forEach(value => {
                 const dayElement = document.createElement('div');
-                dayElement.classList.add('day', data[i] ? classNameTrue : classNameFalse);
+                dayElement.classList.add('day', value ? classNameTrue : classNameFalse);
                 container.appendChild(dayElement);
-            }
+            });
         }
 
-        // Datenarray (Beispiel, sollte von Ihrem Server kommen)
-        const sleptWellData = new Array(365).fill(false); // Beispiel: alle false
-        const workoutData = new Array(365).fill(false); // Beispiel: alle false
+        // Daten aus Flask in JavaScript einbinden
+        const sleptWellData = {{ slept_well_data | tojson | safe }};
+    const workoutData = {{ workout_data | tojson | safe }};
+
 
         // Grids erstellen
         createGrid('slept-well-grid', 'slept-well-true', 'slept-well-false', sleptWellData);
@@ -69,3 +71,4 @@
     </script>
 </body>
 </html>
+
