@@ -5,9 +5,9 @@ nav_order: 1
 ---
 
 {: .label }
-[Ömer Öztürk]
+Ömer Öztürk
 
-# [Goals achieved and missed]
+# Goals achieved and missed
 {: .no_toc }
 
 <details open markdown="block">

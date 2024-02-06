@@ -4,9 +4,9 @@ nav_order: 3
 ---
 
 {: .label }
-[Ömer Öztürk]
+Ömer Öztürk
 
-# [Design decisions]
+# Design decisions
 {: .no_toc }
 
 <details open markdown="block">
@@ -16,7 +16,7 @@ nav_order: 3
 {: toc }
 </details>
 
-## 01: [Datenbankdesign für Workouts]
+## 01: Datenbankdesign für Workouts
 
 ### Meta
 {: .no_toc }
@@ -55,7 +55,7 @@ Nach eingehender Bewertung der Vor- und Nachteile haben wir uns entschieden, in 
 
 ---
 
-## 02: [Gridgraph-Visualisierung für Workout-Fortschritt]
+## 02: Gridgraph-Visualisierung für Workout-Fortschritt
 
 ### Meta
 {: .no_toc }

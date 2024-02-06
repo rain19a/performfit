@@ -5,9 +5,9 @@ nav_order: 4
 ---
 
 {: .label }
-[Ömer Öztürk]
+Ömer Öztürk
 
-# [Summary of individual contributions]
+# Summary of individual contributions
 {: .no_toc }
 
 <details open markdown="block">
@@ -17,14 +17,14 @@ nav_order: 4
 {: toc }
 </details>
 
-## [Ömer Öztürk]
+## Ömer Öztürk
 
 Contributions
 : Jane's first contribution
 : Jane's second contribution
 : ...
 
-## [Kubilay Jessa]
+## Kubilay Jessa
 
 Contributions
 : Joe's first contribution

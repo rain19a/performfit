@@ -5,9 +5,9 @@ nav_order: 2
 ---
 
 {: .label }
-[Ömer Öztürk]
+Ömer Öztürk
 
-# [App behavior]
+# App behavior
 {: .no_toc }
 
 <details open markdown="block">

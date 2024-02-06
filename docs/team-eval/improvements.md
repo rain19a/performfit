@@ -5,9 +5,9 @@ nav_order: 2
 ---
 
 {: .label }
-[Ömer Öztürk]
+Ömer Öztürk
 
-# [How we would improve next time]
+# How we would improve next time
 {: .no_toc }
 
 <details open markdown="block">
