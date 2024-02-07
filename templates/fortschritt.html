@@ -12,7 +12,7 @@
             gap: 2px;
         }
         .day {
-            width: 14px; /* Größe der Quadrate anpassen */
+            width: 14px; 
             height: 14px;
             border-radius: 2px;
         }
@@ -54,12 +54,12 @@
     const container = document.getElementById(containerId);
     container.innerHTML = ''; // Vorhandenen Inhalt löschen
 
-    // Stellen Sie sicher, dass immer 365 Felder erstellt werden
+    // 365 felder immer, also nicht leer
     for (let i = 0; i < 365; i++) {
         const dayElement = document.createElement('div');
         dayElement.classList.add('day');
 
-        // Wenn Daten vorhanden sind und den Wert true haben, fügen Sie die entsprechende Klasse hinzu
+        // Wenn Daten vorhanden sind und den Wert true haben, wird Klasse hinzugefügt
         if (data[i] && data[i].value === true) {
             dayElement.classList.add(classNameTrue);
         } else {
