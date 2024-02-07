@@ -6,7 +6,7 @@ from db import app, db, User, Progress
 from datetime import timedelta
 from datetime import date
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
-
+from flask_login import login_user
 
 #neu
 app.config['SECRET_KEY'] = 'ein-geheimer-schlüssel'  # Setzen Sie einen sicheren Wert
@@ -36,6 +36,7 @@ def register():
             try:
                 db.session.add(user)
                 db.session.commit()
+                login_user(user)
                 return redirect(url_for('fragenkatalog'))
             except Exception as e:
                 error_message = "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
@@ -87,6 +88,12 @@ def fragenkatalog():
 def submit_fragenkatalog():
     gewicht = request.form.get('gewicht')
     zielgewicht = request.form.get('zielgewicht')
+
+    user = User.query.get(current_user.id)
+    user.gewicht = float(gewicht)
+    user.zielgewicht = float(zielgewicht)
+    db.session.commit()
+
     return redirect(url_for('dashboard'))
 
 
