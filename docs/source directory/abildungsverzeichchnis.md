@@ -1,5 +1,6 @@
 ---
 title: Abbildungsverzeichnis
+parent: Source Directory
 nav_order: 2
 ---
 

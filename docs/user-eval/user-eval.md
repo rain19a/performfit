@@ -4,9 +4,9 @@ nav_order: 4
 ---
 
 {: .label }
-[Ömer Öztürk]
+Ömer Öztürk
 
-# [User evaluation]
+# User evaluation
 {: .no_toc }
 
 <details open markdown="block">
@@ -16,7 +16,7 @@ nav_order: 4
 {: toc }
 </details>
 
-## 01: [Title]
+## 01: Title
 
 ### Meta
 

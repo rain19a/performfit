@@ -1,5 +1,6 @@
 ---
 title: Literaturverzeichnis
+parent: Source Directory
 nav_order: 1
 ---
 
