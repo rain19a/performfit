@@ -9,12 +9,6 @@
     <h1>Fragenkatalog</h1>
     <form action="{{ url_for('submit_fragenkatalog') }}" method="post">
         <div>
-            <button type="button">Bist du Anfänger</button>
-        </div>
-        <div>
-            <button type="button">Bist du Fortgeschritten</button>
-        </div>
-        <div>
             <label>Wie viel wiegst du?</label>
             <input type="number" name="gewicht" required>
         </div>
@@ -25,9 +19,9 @@
         <div>
             <input type="submit" value="Weiter">
         </div>
-        <!-- Button, um zurück zur Startseite zu gelangen (=Logout???) -->
+        <!-- Button, um zurück zur Startseite zu gelangen -->
         <div>
-            <button type="button" onclick="location.href='/';">Logout</button>
+            <button type="button" onclick="location.href='/';">Zurück zur Startseite</button>
         </div>
     </form>
 </body>

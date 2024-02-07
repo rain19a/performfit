@@ -12,33 +12,33 @@
             gap: 2px;
         }
         .day {
-            width: 14px; /* Größe der Quadrate anpassen */
+            width: 14px; 
             height: 14px;
             border-radius: 2px;
         }
-        .slept-well-true { background-color: #28a745; } /* Dunklere Farbe für "gut geschlafen" */
-        .slept-well-false { background-color: #c3e6cb; } /* Hellere Farbe für "nicht gut geschlafen" */
-        .workout-true { background-color: #007bff; } /* Dunklere Farbe für "workout geschafft" */
-        .workout-false { background-color: #bee5eb; } /* Hellere Farbe für "workout nicht geschafft" */
+        .slept-well-true { background-color:#007bff; } /* Dunklere Farbe für "gut geschlafen" */   
+        .slept-well-false { background-color: #bee5eb; } /* Hellere Farbe für "nicht gut geschlafen" */
+        .workout-true { background-color: #28a745; } /* Dunklere Farbe für "workout geschafft" */
+        .workout-false { background-color:#c3e6cb; } /* Hellere Farbe für "workout nicht geschafft" */ 
     </style>
 </head>
 <body>
     <div class="container mt-5">
         <h2>Fortschrittsanzeige</h2>
-        
-        <!-- Fortschrittsanzeige für "Gut geschlafen" -->
-        <div class="mt-3">
-            <h4>Gut geschlafen</h4>
-            <div id="slept-well-grid" class="grid">
-                <!-- JavaScript wird hier die Quadrate einfügen -->
-            </div>
-        </div>
-
+     
         <!-- Fortschrittsanzeige für "Workout geschafft" -->
         <div class="mt-3">
             <h4>Workout geschafft</h4>
             <div id="workout-grid" class="grid">
-                <!-- JavaScript wird hier die Quadrate einfügen -->
+                <!-- Die Quadrate werden durch JavaScript eingefügt -->
+            </div>
+        </div>
+       
+        <!-- Fortschrittsanzeige für "Gut geschlafen" -->
+        <div class="mt-3">
+            <h4>Gut geschlafen</h4>
+            <div id="slept-well-grid" class="grid">
+                <!-- Die Quadrate werden durch JavaScript eingefügt -->
             </div>
         </div>
     </div>
@@ -48,20 +48,34 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <script>
-        // Beispiel: JavaScript zum Einfügen der Quadrate
+    <!-- Daten von Flask an JavaScript übergeben und Grid erstellen -->
+    <script type="text/javascript">
         function createGrid(containerId, classNameTrue, classNameFalse, data) {
-            const container = document.getElementById(containerId);
-            for (let i = 0; i < 365; i++) {
-                const dayElement = document.createElement('div');
-                dayElement.classList.add('day', data[i] ? classNameTrue : classNameFalse);
-                container.appendChild(dayElement);
-            }
+    const container = document.getElementById(containerId);
+    container.innerHTML = ''; // Vorhandenen Inhalt löschen
+
+    // 365 felder immer, also nicht leer
+    for (let i = 0; i < 365; i++) {
+        const dayElement = document.createElement('div');
+        dayElement.classList.add('day');
+
+        // Wenn Daten vorhanden sind und den Wert true haben, wird Klasse hinzugefügt
+        if (data[i] && data[i].value === true) {
+            dayElement.classList.add(classNameTrue);
+        } else {
+            dayElement.classList.add(classNameFalse);
         }
 
-        // Datenarray (Beispiel, sollte von Ihrem Server kommen)
-        const sleptWellData = new Array(365).fill(false); // Beispiel: alle false
-        const workoutData = new Array(365).fill(false); // Beispiel: alle false
+        container.appendChild(dayElement);
+    }
+}
+
+
+
+        // Daten aus Flask in JavaScript einbinden
+        const sleptWellData = {{ slept_well_data | tojson | safe }};
+    const workoutData = {{ workout_data | tojson | safe }};
+
 
         // Grids erstellen
         createGrid('slept-well-grid', 'slept-well-true', 'slept-well-false', sleptWellData);
@@ -69,3 +83,4 @@
     </script>
 </body>
 </html>
+

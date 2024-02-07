@@ -89,12 +89,13 @@ def submit_fragenkatalog():
     zielgewicht = request.form.get('zielgewicht')
     return redirect(url_for('dashboard'))
 
+
 # Route für Dashboard
 @app.route('/dashboard', methods=['GET', 'POST'])
 @login_required
 def dashboard():
     if request.method == 'POST':
-        user_id = 1  # Ersetzen Sie dies mit der tatsächlichen Benutzer-ID
+        user_id = current_user.get_id()
         workout_completed = 'workout' in request.form
         slept_well = 'sleep' in request.form
 
@@ -135,18 +136,16 @@ def fortschritt():
         Progress.date >= start_date
     ).order_by(Progress.date.asc()).all()
     
-    if not progress_data:
-        error_message = "Keine Fortschrittsdaten verfügbar."
-        return render_template('fortschritt.html', error_message=error_message)
-
-    slept_well_data = [{'date': p.date.strftime('%Y-%m-%d'), 'value': p.slept_well} for p in progress_data]
-    workout_data = [{'date': p.date.strftime('%Y-%m-%d'), 'value': p.workout_completed} for p in progress_data]
+    # Überprüfen, ob Fortschrittsdaten vorhanden sind
+    if progress_data:
+        slept_well_data = [{'date': p.date.strftime('%Y-%m-%d'), 'value': p.slept_well} for p in progress_data]
+        workout_data = [{'date': p.date.strftime('%Y-%m-%d'), 'value': p.workout_completed} for p in progress_data]
+    else:
+        # Wenn keine Fortschrittsdaten vorhanden sind, erstelle leere Daten für 365 Tage
+        slept_well_data = [{'date': (date.today() - timedelta(days=i)).strftime('%Y-%m-%d'), 'value': False} for i in range(364, -1, -1)]
+        workout_data = [{'date': (date.today() - timedelta(days=i)).strftime('%Y-%m-%d'), 'value': False} for i in range(364, -1, -1)]
     
     return render_template('fortschritt.html', slept_well_data=slept_well_data, workout_data=workout_data)
-
-
-
-
 
 
 
