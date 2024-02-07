@@ -5,6 +5,6 @@ nav_order: 5
 ---
 
 {: .label }
-[Kubilay Jessa]
+Ömer Öztürk
 
-# [Team evaluation]
+# Team evaluation

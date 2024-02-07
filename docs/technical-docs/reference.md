@@ -5,17 +5,12 @@ nav_order: 4
 ---
 
 {: .label }
-[Jane Dane]
+Ömer Öztürk
 
-# [Reference documentation]
+# Reference documentation
 {: .no_toc }
 
-{: .attention }
-> This page collects internal functions, routes with their functions, and APIs (if any).
-> 
-> See [Uber](https://developer.uber.com/docs/drivers/references/api) or [PayPal](https://developer.paypal.com/api/rest/) for exemplary high-quality API reference documentation.
->
-> You may delete this `attention` box.
+
 
 <details open markdown="block">
 {: .text-delta }
@@ -24,7 +19,7 @@ nav_order: 4
 {: toc }
 </details>
 
-## [Section / module]
+## Section / module
 
 ### `function_definition()`
 
@@ -40,7 +35,7 @@ nav_order: 4
 
 ---
 
-## [Example, delete this section] Show to-do lists
+##  Show to-do lists
 
 ### `get_lists()`
 
@@ -70,7 +65,7 @@ nav_order: 4
 
 ---
 
-## [Example, delete this section] Insert sample data
+##  Insert sample data
 
 ### `run_insert_sample()`
 

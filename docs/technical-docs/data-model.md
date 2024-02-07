@@ -5,9 +5,9 @@ nav_order: 3
 ---
 
 {: .label }
-[Jane Dane]
+Ömer Öztürk
 
-# [Data model]
+# Data model
 {: .no_toc }
 
 <details open markdown="block">
