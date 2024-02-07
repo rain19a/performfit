@@ -2,6 +2,8 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash
 from flask import Flask
 from flask_login import UserMixin
+from flask_migrate import Migrate
+
 
 # Flask-Anwendung erstellen
 app = Flask(__name__)
@@ -12,6 +14,10 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Datenbankinstanz erstellen
 db = SQLAlchemy(app)
+
+#Aktualisierung DB
+migrate = Migrate(app, db)
+
 
 # Datenbankmodell für die Benutzer
 class User(UserMixin, db.Model):
