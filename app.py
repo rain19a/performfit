@@ -89,6 +89,7 @@ def submit_fragenkatalog():
     zielgewicht = request.form.get('zielgewicht')
     return redirect(url_for('dashboard'))
 
+
 # Route für Dashboard
 @app.route('/dashboard', methods=['GET', 'POST'])
 @login_required
@@ -145,10 +146,6 @@ def fortschritt():
         workout_data = [{'date': (date.today() - timedelta(days=i)).strftime('%Y-%m-%d'), 'value': False} for i in range(364, -1, -1)]
     
     return render_template('fortschritt.html', slept_well_data=slept_well_data, workout_data=workout_data)
-
-
-
-
 
 
 
