@@ -51,14 +51,26 @@
     <!-- Daten von Flask an JavaScript übergeben und Grid erstellen -->
     <script type="text/javascript">
         function createGrid(containerId, classNameTrue, classNameFalse, data) {
-            const container = document.getElementById(containerId);
-            container.innerHTML = ''; // Vorhandenen Inhalt löschen
-            data.forEach(value => {
-                const dayElement = document.createElement('div');
-                dayElement.classList.add('day', value ? classNameTrue : classNameFalse);
-                container.appendChild(dayElement);
-            });
+    const container = document.getElementById(containerId);
+    container.innerHTML = ''; // Vorhandenen Inhalt löschen
+
+    // Stellen Sie sicher, dass immer 365 Felder erstellt werden
+    for (let i = 0; i < 365; i++) {
+        const dayElement = document.createElement('div');
+        dayElement.classList.add('day');
+
+        // Wenn Daten vorhanden sind und den Wert true haben, fügen Sie die entsprechende Klasse hinzu
+        if (data[i] && data[i].value === true) {
+            dayElement.classList.add(classNameTrue);
+        } else {
+            dayElement.classList.add(classNameFalse);
         }
+
+        container.appendChild(dayElement);
+    }
+}
+
+
 
         // Daten aus Flask in JavaScript einbinden
         const sleptWellData = {{ slept_well_data | tojson | safe }};

@@ -135,12 +135,14 @@ def fortschritt():
         Progress.date >= start_date
     ).order_by(Progress.date.asc()).all()
     
-    if not progress_data:
-        error_message = "Keine Fortschrittsdaten verfügbar."
-        return render_template('fortschritt.html', error_message=error_message)
-
-    slept_well_data = [{'date': p.date.strftime('%Y-%m-%d'), 'value': p.slept_well} for p in progress_data]
-    workout_data = [{'date': p.date.strftime('%Y-%m-%d'), 'value': p.workout_completed} for p in progress_data]
+    # Überprüfen, ob Fortschrittsdaten vorhanden sind
+    if progress_data:
+        slept_well_data = [{'date': p.date.strftime('%Y-%m-%d'), 'value': p.slept_well} for p in progress_data]
+        workout_data = [{'date': p.date.strftime('%Y-%m-%d'), 'value': p.workout_completed} for p in progress_data]
+    else:
+        # Wenn keine Fortschrittsdaten vorhanden sind, erstelle leere Daten für 365 Tage
+        slept_well_data = [{'date': (date.today() - timedelta(days=i)).strftime('%Y-%m-%d'), 'value': False} for i in range(364, -1, -1)]
+        workout_data = [{'date': (date.today() - timedelta(days=i)).strftime('%Y-%m-%d'), 'value': False} for i in range(364, -1, -1)]
     
     return render_template('fortschritt.html', slept_well_data=slept_well_data, workout_data=workout_data)
 
