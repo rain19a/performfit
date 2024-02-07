@@ -27,7 +27,9 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(100), unique=True, nullable=False)
     username = db.Column(db.String(100), unique=True, nullable=False)
     password_hash = db.Column(db.String(200), nullable=False)
-
+    gewicht = db.Column(db.Float, nullable=True)
+    zielgewicht = db.Column(db.Float, nullable=True)
+    
     # Methode zum Setzen des Passwort-Hashes
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
