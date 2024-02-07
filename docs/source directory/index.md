@@ -8,3 +8,10 @@ nav_order: 6
 Ömer Öztürk
 
 # Source Directory
+
+<details open markdown="block">
+{: .text-delta }
+<summary>Table of contents</summary>
++ ToC
+{: toc }
+</details>
