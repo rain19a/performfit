@@ -138,11 +138,17 @@ def fortschritt():
     user = User.query.get(user_id)
 
     if request.method == 'POST':
-        gewicht = request.form.get('gewicht', type=float)
-        if gewicht:
+        
+        if 'gewicht' in request.form:
+            gewicht = request.form.get('gewicht', type=float)
             user.gewicht = gewicht
-            db.session.commit()
-            return redirect(url_for('fortschritt'))  # Aktualisiere die Seite, um die neuen Daten anzuzeigen
+        
+        elif 'zielgewicht' in request.form:
+            zielgewicht = request.form.get('zielgewicht', type=float)
+            user.zielgewicht = zielgewicht
+        
+        db.session.commit()
+        return redirect(url_for('fortschritt'))  
 
     start_date = date.today() - timedelta(days=364)
     progress_data = Progress.query.filter(Progress.user_id == user_id, Progress.date >= start_date).order_by(Progress.date.asc()).all()
@@ -161,6 +167,7 @@ def fortschritt():
                            entfernung_zum_ziel=entfernung_zum_ziel, 
                            slept_well_data=slept_well_data, 
                            workout_data=workout_data)
+
 
 
 

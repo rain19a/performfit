@@ -26,13 +26,22 @@
     <div class="container mt-5">
         <h2>Fortschrittsanzeige</h2>
      
-  <!-- Formular zum Aktualisieren des Gewichts -->
+ <!-- Formular zum Aktualisieren des aktuellen Gewichts -->
         <form action="{{ url_for('fortschritt') }}" method="post" class="mb-3">
             <div class="form-group">
                 <label for="gewicht">Aktuelles Gewicht:</label>
                 <input type="number" class="form-control" id="gewicht" name="gewicht" value="{{ user.gewicht }}" step="0.1" required>
+                <button type="submit" class="btn btn-primary">Aktualisieren</button>
             </div>
-            <button type="submit" class="btn btn-primary">Aktualisieren</button>
+        </form>
+
+        <!-- Formular zum Aktualisieren des Zielgewichts -->
+        <form action="{{ url_for('fortschritt') }}" method="post" class="mb-3">
+            <div class="form-group">
+                <label for="zielgewicht">Zielgewicht:</label>
+                <input type="number" class="form-control" id="zielgewicht" name="zielgewicht" value="{{ user.zielgewicht }}" step="0.1" required>
+                <button type="submit" class="btn btn-primary">Ziel aktualisieren</button>
+            </div>
         </form>
 
         <!-- Zielgewicht und Entfernung anzeigen -->
