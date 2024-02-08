@@ -131,29 +131,36 @@ def dashboard():
 
 
 
-@app.route('/fortschritt')
+@app.route('/fortschritt', methods=['GET', 'POST'])
 @login_required
 def fortschritt():
-    user_id = current_user.get_id()  # Die tatsächliche Benutzer-ID des eingeloggten Benutzers verwenden
+    user_id = current_user.get_id()
+    user = User.query.get(user_id)
+
+    if request.method == 'POST':
+        gewicht = request.form.get('gewicht', type=float)
+        if gewicht:
+            user.gewicht = gewicht
+            db.session.commit()
+            return redirect(url_for('fortschritt'))  # Aktualisiere die Seite, um die neuen Daten anzuzeigen
 
     start_date = date.today() - timedelta(days=364)
-    
-    progress_data = Progress.query.filter(
-        Progress.user_id == user_id,
-        Progress.date >= start_date
-    ).order_by(Progress.date.asc()).all()
-    
-    # Überprüfen, ob Fortschrittsdaten vorhanden sind
+    progress_data = Progress.query.filter(Progress.user_id == user_id, Progress.date >= start_date).order_by(Progress.date.asc()).all()
+
     if progress_data:
         slept_well_data = [{'date': p.date.strftime('%Y-%m-%d'), 'value': p.slept_well} for p in progress_data]
         workout_data = [{'date': p.date.strftime('%Y-%m-%d'), 'value': p.workout_completed} for p in progress_data]
     else:
-        # Wenn keine Fortschrittsdaten vorhanden sind, erstelle leere Daten für 365 Tage
         slept_well_data = [{'date': (date.today() - timedelta(days=i)).strftime('%Y-%m-%d'), 'value': False} for i in range(364, -1, -1)]
         workout_data = [{'date': (date.today() - timedelta(days=i)).strftime('%Y-%m-%d'), 'value': False} for i in range(364, -1, -1)]
-    
-    return render_template('fortschritt.html', slept_well_data=slept_well_data, workout_data=workout_data)
 
+    entfernung_zum_ziel = user.zielgewicht - user.gewicht if user.gewicht and user.zielgewicht else None
+
+    return render_template('fortschritt.html', 
+                           user=user, 
+                           entfernung_zum_ziel=entfernung_zum_ziel, 
+                           slept_well_data=slept_well_data, 
+                           workout_data=workout_data)
 
 
 
