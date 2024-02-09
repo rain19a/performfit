@@ -19,62 +19,216 @@ nav_order: 4
 {: toc }
 </details>
 
-## Section / module
+## User Management
 
-### `function_definition()`
+### `register()`
 
-**Route:** `/route/`
+**Route:** `/register/`
 
-**Methods:** `POST` `GET` `PATCH` `PUT` `DELETE`
+**Methods:** `POST` 
 
-**Purpose:** [Short explanation of what the function does and why]
+**Purpose:** Registriere einen neuen Benutzer mit den angegebenen Details.
 
 **Sample output:**
 
-[Show an image, string output, or similar illustration -- or write NONE if function generates no output]
+Weiterleitung zum 'fragenkatalog' bei erfolgreicher Registrierung.
+
+
+<pre lang="no-highlight"><code>
+
+return redirect(url_for('fragenkatalog'))
+
+</code></pre>
+
+Bei Misserfolg aufgrund eines bereits existierenden Benutzernamens oder E-Mail-Adresse:
+
+<pre lang="no-highlight"><code>
+return render_template('registration.html', error_message=error_message)
+</code></pre>
+
+
+login()
+
+Route: /login/
+
+Methoden: POST
+
+Zweck: Melde einen vorhandenen Benutzer mit ihrem Benutzernamen und Passwort an.
+
+Weiterleitung zum 'dashboard' bei erfolgreicher Anmeldung.
+
+<pre lang="no-highlight"><code>
+return redirect(url_for('dashboard'))
+</code></pre>
+
+Bei Misserfolg aufgrund falscher Anmeldeinformationen:
+
+<pre lang="no-highlight"><code>
+return "Falscher Benutzername oder Passwort"
+
+</code></pre>
+
+logout()
+Route: /logout/
+
+Methoden: GET
+
+Zweck: Meldet den aktuellen Benutzer ab.
+
+Weiterleitung zur 'index' nach der Abmeldung.
+
+<pre lang="no-highlight"><code>
+return redirect(url_for('index'))
+</code></pre>
+
 
 ---
 
-##  Show to-do lists
+##  Dashboard
 
-### `get_lists()`
+**Route:** `dashboard()`
 
-**Route:** `/lists/`
+**Methods:** `GET` `POST`
 
-**Methods:** `GET`
-
-**Purpose:** Show all to-do lists.
+**Purpose:** Zeige das Dashboard des Benutzers mit ihrem Fortschritt, Trainingsplänen und anderen relevanten Informationen an.
 
 **Sample output:**
 
-![get_lists() sample](../assets/images/fswd-intro_00.png)
+<pre lang="no-highlight"><code>
+return render_template('dashboard.html')
+</code></pre>
 
 ---
 
-### `get_list_todos(list_id)`
+##Fortschrittsverfolgung
 
-**Route:** `/lists/<int:list_id>`
+**Route:** `/fortschritt/`
 
-**Methods:** `GET`
+**Methods:** `GET` `POST`
 
-**Purpose:** Retrieve all to-do items of to-do list with ID `list_id` from database and present to user.
+**Purpose:** Verfolge den Fortschritt des Benutzers über die Zeit, einschließlich Gewichtsänderungen, abgeschlossener Workouts und Schlafqualität.
 
 **Sample output:**
 
-![get_list_todos() sample](../assets/images/fswd-intro_02.png)
+Rendert das 'fortschritt.html' Template mit visuellen Darstellungen der Fortschrittsdaten des Benutzers.
+
+<pre lang="no-highlight"><code>
+return render_template('fortschritt.html', 
+                       user=user, 
+                       entfernung_zum_ziel=entfernung_zum_ziel, 
+                       slept_well_data=slept_well_data, 
+                       workout_data=workout_data)
+</code></pre>
 
 ---
 
-##  Insert sample data
+##  Workout-Verwaltung
 
-### `run_insert_sample()`
+### `workout_plan()`
 
-**Route:** `/insert/sample`
+**Route:** `/workoutplan/`
 
-**Methods:** `GET`
+**Methods:** `GET` `POST`
 
-**Purpose:** Flush the database and insert sample data set
+**Purpose:** Verwalte die Trainingspläne des Benutzers, einschließlich Hinzufügen, Bearbeiten und Löschen von Workouts.
 
 **Sample output:**
 
-Browser shows: `Database flushed and populated with some sample data.`
+Rendert das 'workoutplan.html' Template mit den vorhandenen Workouts des Benutzers und ermöglicht CRUD-Operationen.
+
+<pre lang="no-highlight"><code>
+return render_template('workoutplan.html', trainings=trainings, training_days=training_days)
+</code></pre>
+
+---
+
+##  Workout-Verwaltung
+
+### `trainingsinhalt()`
+
+**Route:** `/trainingsinhalt/<string:day>/<string:training_name>`
+
+**Methods:** `GET` 
+
+**Purpose:** Ruft die Details einer bestimmten Trainingssitzung ab und zeigt sie an.
+
+**Sample output:**
+
+Rendert das 'trainingsinhalt.html' Template mit den Details der ausgewählten Trainingssitzung.
+
+<pre lang="no-highlight"><code>
+return render_template('trainingsinhalt.html', day=day, training_name=training_name, trainingsinhalte=trainingsinhalte, training_day_id=training_day.id)
+</code></pre>
+
+---
+
+##  Workout-Verwaltung
+
+### `add_training_and_day()`
+
+**Route:** `/workoutplan/add/`
+
+**Methods:** `POST` 
+
+**Purpose:** Füge ein neues Training und einen Trainingstag hinzu.
+
+**Sample output:**
+
+Weiterleitung zum 'workout_plan' nach Hinzufügen des Trainings und des Trainingstages.
+
+<pre lang="no-highlight"><code>
+return redirect (url_for('workout_plan'))
+</code></pre>
+
+### delete_training_or_day()
+
+**Route:** /workoutplan/delete/
+
+**Methods:** `POST`
+
+**Purpose:** Lösche ein spezifisches Training oder einen Trainingstag.
+
+**Sample output:**
+
+Weiterleitung zum 'workout_plan' nach dem Löschen des Trainings oder des Trainingstages.
+
+<pre lang="no-highlight"><code>
+return redirect(url_for('workout_plan'))
+</code></pre>
+
+
+**Route:** add_trainingsinhalt()
+
+**Methods:** `POST`
+
+**Purpose:** Füge neue Trainingsinhalte zu einem Trainingstag hinzu.
+
+**Sample output:**
+
+Nach erfolgreichem Hinzufügen Weiterleitung zur 'trainingsinhalt' Seite.
+
+<pre lang="no-highlight"><code>
+return redirect(url_for('trainingsinhalt', day=day, training_name=training_name))
+</code></pre>
+
+Bei einem Fehler wird eine Fehlermeldung angezeigt und der Benutzer zur vorherigen Seite zurückgeleitet.
+
+<pre lang="no-highlight"><code>
+flash(f'Fehler beim Hinzufügen der Übung: {e}', 'danger')
+return redirect(request.referrer)
+</code></pre>
+
+### remove_trainingsinhalt()
+
+**Route:**/remove_trainingsinhalt/<int:inhalt_id>/
+
+**Methods:** `POST`
+
+**Purpose:** Entferne spezifische Trainingsinhalte eines Trainingstages.
+
+Nach dem Entfernen Weiterleitung zur vorherigen Seite.
+
+<pre lang="no-highlight"><code>
+return redirect(request.referrer)
+</code></pre>
+
