@@ -1,7 +1,5 @@
 # Willkommen bei PerformFit
 
-![PerformFit Fitness App](/pfad/zum/bild.jpg)
-
 Transformieren Sie Ihre Fitnessroutine durch Eigeninitiative und Motivation mit PerformFit. Unsere App verbindet eine intuitive Benutzeroberfläche mit innovativen Grid-Graphen, die es Ihnen ermöglichen, Ihre Workouts selbst einzutragen und Fortschritte visuell zu verfolgen. Wir fördern Selbstbestimmung und kontinuierlichen Antrieb, damit Sie Ihre Ziele nicht nur erreichen, sondern übertreffen. PerformFit – Ihr Weg, Ihr Tempo, Ihr Erfolg.
 
 ## Warum PerformFit?
