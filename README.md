@@ -29,24 +29,22 @@ Unsere Features die wir in der PerformFit-Web haben:
 git clone https://github.com/rain19a/performfit.git
 
 2. Wechsle in das Projektverzeichnis:
-
-```cd performfit
 ```
-
+cd performfit
+```
 3. Erstelle und aktiviere eine virtuelle Umgebung :
-
-```python -m venv venv
-source venv/bin/activate ```
-
+```
+python -m venv venv
+source venv/bin/activate 
+```
 4. Installiere die Abhängigkeiten:
-
+```
 pip install -r requirements.txt
-
+```
 5. Führe die Anwendung aus:
-
-```python app.py ```
-
-
+```
+python app.py
+```
 Die Anwendung wird unter http://localhost:5000/ gestartet.
 
 ## Verwendete Technologien
