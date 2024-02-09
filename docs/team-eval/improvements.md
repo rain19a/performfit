@@ -21,12 +21,6 @@ nav_order: 2
 
 In der Retrospektive unserer Arbeit an PerformFit haben wir wertvolle Erkenntnisse gewonnen, die für die Weiterentwicklung der App von Bedeutung sind. Hier listen wir einige Schlüsselbereiche auf, in denen wir für zukünftige Projekte Verbesserungen anstreben.
 
-- [How we would improve next time](#how-we-would-improve-next-time)
-  - [Frühzeitiger Projektstart](#frühzeitiger-projektstart)
-  - [Kontinuierliche Nutzereinbindung](#kontinuierliche-nutzereinbindung)
-  - [Agile Entwicklungsmethoden](#agile-entwicklungsmethoden)
-  - [Stärkere Teamkommunikation](#stärkere-teamkommunikation)
-
 ## Frühzeitiger Projektstart
 
 Ein frühzeitiger Start in der Projektphase ermöglicht es uns, umfassende Recherchen durchzuführen und einen klareren Projektplan zu entwickeln. Für zukünftige Projekte planen wir, zusätzliche Zeit für die Konzeptionsphase einzuplanen, um ein tieferes Verständnis der Nutzerbedürfnisse zu entwickeln und ein robustes Fundament für das Design und die Entwicklung zu legen.
