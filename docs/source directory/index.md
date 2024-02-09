@@ -17,7 +17,9 @@ nav_order: 6
 
 ## Literaturverzeichnis
 
-1.
+1. Chat GPT für Bugfixes und Einteilung des Codes in Über- und Unterschriften.
+2. ChatGPT verwendet, um Bootstrap-Links für CSS und JavaScript zu erhalten, um Bootstrap-Funktionalitäten in Webprojekte einzubinden.
+3. Chat GPT für Methodenerklärung teilweise verwendet. Auch, um anregungen zu geben, wenn man mit dem implementieren überhaupt nicht weitergekommen ist.
 
 ## Abbildungsverzeichnis
 
