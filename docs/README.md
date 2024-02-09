@@ -8,7 +8,7 @@ PerformFit ist mehr als nur eine Fitness-App – es ist Ihr persönlicher Traine
 
 - **Benutzerzentrierte Gestaltung:** Eine nahtlose Benutzererfahrung für Anfänger und erfahrene Fitnessenthusiasten.
 - **Innovative Fortschrittsverfolgung:** Unsere Grid-Graphen ermöglichen es Ihnen, Ihre Fortschritte auf einen Blick zu sehen und sich von Ihrer Erfolgsvisualisierung inspirieren zu lassen.
-- **Maßgeschneiderte Workouts:** Generieren Sie individuell abgestimmte Trainingspläne basierend auf Ihren persönlichen Daten und Zielen.
+- **Einsehen von Workouts:** Generieren Sie individuell abgestimmte Trainingspläne basierend auf Ihren persönlichen Daten und Zielen.
 - **Fortschritt Überall:** Greifen Sie auf Ihre Trainingsdaten jederzeit zu – mobil und auf dem Desktop.
 
 ## Features
