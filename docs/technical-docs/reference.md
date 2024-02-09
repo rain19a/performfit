@@ -105,7 +105,7 @@ Weiterleitung zur 'index' nach der Abmeldung.
 
 Rendert das 'fortschritt.html' Template mit visuellen Darstellungen der Fortschrittsdaten des Benutzers.
 
-`return render_template('fortschritt.html', ` 
+` return render_template('fortschritt.html', ` 
                       `  user=user, ` 
                     ` entfernung_zum_ziel=entfernung_zum_ziel, ` 
                        ` slept_well_data=slept_well_data, ` 

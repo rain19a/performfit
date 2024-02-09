@@ -16,81 +16,70 @@ nav_order: 3
 {: toc }
 </details>
 
-## 01: Datenbankdesign für Workouts
-
-### Meta
-{: .no_toc }
-Status
-: **Work in progress** - Decided 
-
-Updated
-: 11-01-2024
-
-### Problem statement
-{: .no_toc }
-[Describe the problem to be solved or the goal to be achieved. Include relevant context information.]
-
-Beim Aufbau unserer Workout-Datenbank waren wir uns nicht sicher, welche Infos wir wirklich brauchen. Wir dachten erst an Dauer und Intensität, aber irgendwie schien das wohlmöglich zu viel vom User sein. Wir brauchten was Besseres, etwas, das unseren Nutzern wirklich hilft, ohne unnötige Daten zu sammeln.
-
-
-### Decision
-{: .no_toc }
-[Describe **which** design decision was taken for **what reason** and by **whom**.]
-
-Okay, also haben wir uns hingesetzt und entschieden, dass wir uns auf die Basics konzentrieren: Welche Übungen, wie viele Wiederholungen und wie viele Sätze. Dauer und Intensität? Die packen wir lieber in ein optionales Notizfeld. Wir waren uns nämlich nicht sicher, wie wir "Intensität" am besten definieren sollten. Wir zusammen fanden es sinnvoller den Nutzern zu erlauben, ihre eigenen Eindrücke und Notizen dazu zu machen, anstatt zu versuchen, das irgendwie standardmäßig in die Datenbank einzubauen.
-
-### Regarded options
-{: .no_toc }
-[Describe any possible design decision that will solve the problem. Assess these options, e.g., via a simple pro/con list.]
-
-Pro:
-Ermöglicht präzises Tracking von Workout-Leistungen.
-Wichtig für die Feststellung von Fortschritt und Anpassung des Trainings.
-
-Contra:
-Kann für Anfänger oder Gelegenheitsnutzer zu detailliert sein.
-Erfordert genaue Eingaben von den Nutzern.
-
-Nach eingehender Bewertung der Vor- und Nachteile haben wir uns entschieden, in unserer Datenbankstruktur für Workouts die Attribute Dauer und Intensität nicht aufzunehmen.
 
 ---
 
-## 02: Gridgraph-Visualisierung für Workout-Fortschritt
+## Datenbankdesign für Workout-Informationen
+
+### Meta
+- **Status:** Fertig - Entschieden
+- **Aktualisiert am:** 11.01.2024
+
+### Problemstellung
+{: .no_toc }
+Beim Entwurf unserer Workout-Datenbank galt es zu bestimmen, welche essenziellen Informationen zur Unterstützung unserer Nutzer erforderlich sind, ohne überflüssige Daten zu erheben. Die Herausforderung lag darin, eine ausgewogene Lösung zu finden, die sowohl nützlich als auch benutzerfreundlich ist.
+
+### Entscheidung
+{: .no_toc }
+Nach gründlicher Beratung wurde entschieden, sich auf die Erfassung der Kernelemente eines Workouts zu konzentrieren: die durchgeführten Übungen, Anzahl der Wiederholungen und Sätze. Informationen zur Dauer und Intensität werden den Nutzern überlassen und können in einem optionalen Notizfeld festgehalten werden.
+
+### Betrachtete Optionen
+{: .no_toc }
+- **Pro:**
+  - Ermöglicht genaues Tracking von Workouts.
+  - Wesentlich für die Messung des Fortschritts und Anpassung der Trainingspläne.
+- **Contra:**
+  - Kann für Anfänger oder Gelegenheitsnutzer überfordernd sein.
+  - Erwartet präzise Angaben von den Nutzern.
+
+### Umsetzung
+{: .no_toc }
+Basierend auf der Abwägung von Vor- und Nachteilen wurde beschlossen, die Attribute Dauer und Intensität nicht in die Hauptdatenbankstruktur aufzunehmen.
+
+---
+
+## Gridgraph-Visualisierung für Workout-Fortschritt
 
 ### Meta
 {: .no_toc }
-Status
-: **Work in progress** - Decided 
 
-Updated
-: 11-01-2024
+- **Status:** - Entschieden
+- **Aktualisiert am:** 11.01.2024
 
-### Problem statement
+### Problemstellung
 {: .no_toc }
-Wir brauchten eine coole Art, um den Fortschritt im Workout-Programm zu zeigen. Tabellen und Zahlen sind okay, aber wir wollten etwas, das unsere Nutzer richtig motiviert und ihnen schnell zeigt, wie gut sie vorankommen.
+Es wurde eine visuelle Methode benötigt, um den Fortschritt im Workout-Programm auf motivierende und ansprechende Weise darzustellen.
 
-### Decision
+### Entscheidung
 {: .no_toc }
-Also haben wir uns überlegt, eine Gridgraph-Visualisierung zu machen. Mit bunten Farben und Symbolen, damit es richtig ins Auge springt. Wir wollten, dass unsere Nutzer einen Blick drauf werfen und sofort sehen, was Sache ist - wie weit sie gekommen sind und wo sie noch was drauflegen können.
 
+Die Wahl fiel auf die Einführung einer Gridgraph-Visualisierung mit Farben und Symbolen, um einen direkten Überblick über den Fortschritt zu ermöglichen und zugleich motivierend zu wirken.
 
-### Regarded options
+### Betrachtete Optionen
 {: .no_toc }
-Nur Zahlen und Tabellen
-Vorteil: Super genau und gibt alle Details.
-Nachteil: Kann langweilig sein, nicht gerade motivierend.
+- **Nur Zahlen und Tabellen:**
+  - **Vorteil:** Sehr präzise.
+  - **Nachteil:** Kann als monoton empfunden werden und wenig motivieren.
+- **Gridgraph mit Farben und Symbolen:**
+  - **Vorteil:** Visuell ansprechend und intuitiv.
+  - **Nachteil:** Kann bei längerer Nutzung eintönig wirken und Herausforderungen bei Updates darstellen.
+- **Mix aus beidem:**
+  - **Vorteil:** Vereint Genauigkeit mit visueller Attraktivität.
+  - **Nachteil:** Technisch anspruchsvoll in der Umsetzung.
 
-Gridgraph mit Farben und Symbolen
-Vorteil: Sieht gut aus, macht Spaß beim Angucken.
-Nachteil: Kann nach längerer Nutzung zu eintönig werden und schwierig mit der automatischen Aktualisierung der Workouts.
-
-Mix aus beidem
-Vorteil: Hat alles – die Genauigkeit und den Look.
-Nachteil: Könnte echt knifflig werden, das hinzubekommen.
-
-
-Lösung für die Nachteile
-Um das Problem mit dem „Zu-viel-des-Guten“ und der komplizierten Umsetzung zu lösen, haben wir uns was Cleveres überlegt: Wir bauen eine einfache Ja-Nein-Funktion ein. Damit können die Nutzer ihren Fortschritt markieren, ohne dass es zu überladen wird. So bleibt der Gridgraph übersichtlich und leicht zu verstehen.
+### Umsetzung
+{: .no_toc }
+Um die Komplexität zu reduzieren und den Überblick zu bewahren, wurde eine einfache Ja/Nein-Funktion implementiert, die es Nutzern ermöglicht, Fortschritte einfach zu markieren und den Gridgraph übersichtlich zu halten.
 
 ---
 
