@@ -15,6 +15,11 @@ nav_order: 6
 {: toc }
 </details>
 
-# Literaturverzeichnis
+## Literaturverzeichnis
 
-# Abbildungsverzeichnis
+1.
+
+## Abbildungsverzeichnis
+
+1. KI generiertes Bild für den Starbildschirm: [chat.gpt](https://chat.openai.com/), letzer Zugriff 20.12.2023
+   
