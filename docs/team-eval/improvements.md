@@ -17,16 +17,11 @@ nav_order: 2
 {: toc }
 </details>
 
-# Verbesserungen für das nächste Mal
+
 
 In der Retrospektive unserer Arbeit an PerformFit haben wir wertvolle Erkenntnisse gewonnen, die für die Weiterentwicklung der App von Bedeutung sind. Hier listen wir einige Schlüsselbereiche auf, in denen wir für zukünftige Projekte Verbesserungen anstreben.
 
-## Inhaltsverzeichnis
-
-
 - [How we would improve next time](#how-we-would-improve-next-time)
-- [Verbesserungen für das nächste Mal](#verbesserungen-für-das-nächste-mal)
-  - [Inhaltsverzeichnis](#inhaltsverzeichnis)
   - [Frühzeitiger Projektstart](#frühzeitiger-projektstart)
   - [Kontinuierliche Nutzereinbindung](#kontinuierliche-nutzereinbindung)
   - [Agile Entwicklungsmethoden](#agile-entwicklungsmethoden)
