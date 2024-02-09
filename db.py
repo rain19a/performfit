@@ -5,6 +5,7 @@ from flask_login import UserMixin
 from flask_migrate import Migrate
 from datetime import date
 
+
 # Flask-Anwendung erstellen
 app = Flask(__name__)
 
@@ -51,12 +52,14 @@ class Progress(db.Model):
 class Training(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), nullable=False, unique=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 class TrainingDay(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     day = db.Column(db.String(10), nullable=False)  # Montag bis Sonntag
     training_id = db.Column(db.Integer, db.ForeignKey('training.id'), nullable=False)
-    
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
     training = db.relationship('Training', backref=db.backref('training_days', lazy=True))
     trainingsinhalte = db.relationship('TrainingInhalt', back_populates='training_day', cascade="all, delete-orphan")
 
@@ -67,5 +70,6 @@ class TrainingInhalt(db.Model):
     saetze = db.Column(db.Integer, nullable=False)
     wiederholungen = db.Column(db.Integer, nullable=False)
     training_day_id = db.Column(db.Integer, db.ForeignKey('training_day.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     training_day = db.relationship('TrainingDay', back_populates='trainingsinhalte')

@@ -103,6 +103,7 @@ def submit_fragenkatalog():
 @app.route('/workoutplan', methods=['GET', 'POST'])
 @login_required
 def workout_plan():
+
     if request.method == 'POST':
         if 'action' in request.form:
             action = request.form['action']
@@ -154,7 +155,7 @@ def workout_plan():
     training_days = TrainingDay.query.all()
     return render_template('workoutplan.html', trainings=trainings, training_days=training_days)
 
-#neu
+#workoutplan add
 @app.route('/workoutplan/add', methods=['POST'])
 @login_required
 def add_training_and_day():
@@ -214,6 +215,7 @@ def trainingsinhalt(day, training_name):
 
 #add trainingsinhalt
 @app.route('/add_trainingsinhalt', methods=['POST'])
+@login_required
 def add_trainingsinhalt():
     training_day_id = request.form.get('training_day_id')
     uebungsname = request.form.get('uebungsname')
@@ -256,6 +258,7 @@ def add_trainingsinhalt():
 
 #remove trainingsinhalt
 @app.route('/remove_trainingsinhalt/<int:inhalt_id>', methods=['POST'])
+@login_required
 def remove_trainingsinhalt(inhalt_id):
     # Finden Sie den Trainingsinhalt, der gelöscht werden soll
     inhalt = TrainingInhalt.query.get(inhalt_id)
