@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Plan</title>
+    <!-- Bootstrap CSS einbinden -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Workout Plan</h1>
+
+        <!-- Formular zum Hinzufügen eines Trainings zu einem Tag -->
+        <form action="/workoutplan/add" method="post" class="mb-3">
+            <div class="form-group">
+                <label for="training_name">Trainingsname:</label>
+                <input type="text" id="training_name" name="training_name" placeholder="Trainingsname" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="day">Tag auswählen:</label>
+                <select id="day" name="day" class="form-control" required>
+                    <option value="Montag">Montag</option>
+                    <option value="Dienstag">Dienstag</option>
+                    <!-- Fügen Sie hier weitere Tage der Woche hinzu -->
+                    <option value="Mittwoch">Mittwoch</option>
+                    <option value="Donnerstag">Donnerstag</option>
+                    <option value="Freitag">Freitag</option>
+                    <option value="Samstag">Samstag</option>
+                    <option value="Sonntag">Sonntag</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Training und Tag hinzufügen</button>
+        </form>
+
+        <!-- Logout und Zurück zum Dashboard Buttons -->
+        <a href="/logout" class="btn btn-info mb-3">Logout</a>
+        <a href="/dashboard" class="btn btn-info mb-3">Zurück zum Dashboard</a>
+
+        <!-- Anzeigen der aktuellen Trainings und Trainingstage -->
+        <h2>Vorhandene Trainings und Trainingstage</h2>
+        {% for training_day in training_days %}
+            <div class="alert alert-light" role="alert">
+                <a href="{{ url_for('trainingsinhalt', day=training_day.day, training_name=training_day.training.name) }}">
+                    {{ training_day.day }}: {{ training_day.training.name }}
+                </a>
+                <!-- Möglichkeit, einen Trainingstag zu löschen -->
+                <form action="/workoutplan/delete" method="post" style="display: inline;">
+                    <input type="hidden" name="training_day_id" value="{{ training_day.id }}">
+                    <button type="submit" class="btn btn-danger btn-sm">Löschen</button>
+                </form>
+            </div>
+        {% endfor %}
+
+    </div>
+
+    <!-- Bootstrap JS und Abhängigkeiten -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+

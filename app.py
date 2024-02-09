@@ -2,7 +2,7 @@ from flask import Flask, flash, render_template, request, redirect, url_for
 from werkzeug.security import check_password_hash
 from db import app, db, User
 from flask import jsonify
-from db import app, db, User, Progress, WorkoutDay, Workout
+from db import app, db, User, Progress, Training, TrainingDay, TrainingInhalt
 from datetime import timedelta
 from datetime import date
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
@@ -10,7 +10,8 @@ from flask_login import login_user
 
 
 #neu
-app.config['SECRET_KEY'] = 'ein-geheimer-schlüssel'  # Setzen Sie einen sicheren Wert
+app.config['SECRET_KEY'] = 'performfitömerkubi@343'  
+
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -97,53 +98,183 @@ def submit_fragenkatalog():
 
     return redirect(url_for('dashboard'))
 
-@app.route('/workout-plan', methods=['GET', 'POST'])
+
+# Route für Workout-Plan
+@app.route('/workoutplan', methods=['GET', 'POST'])
 @login_required
 def workout_plan():
+
     if request.method == 'POST':
-        day_name = request.form.get('day_name')
-        exercise_name = request.form.get('exercise_name')
+        if 'action' in request.form:
+            action = request.form['action']
+            
+            if action == 'add_training':
+                training_name = request.form['training_name']
+                if training_name:  # Überprüfung, ob der Name nicht leer ist
+                    existing_training = Training.query.filter_by(name=training_name).first()
+                    if not existing_training:  # Vermeidung von Duplikaten
+                        new_training = Training(name=training_name)
+                        db.session.add(new_training)
+                        db.session.commit()
 
-        # Überprüfe, ob day_name und exercise_name vorhanden sind
-        if not day_name or not exercise_name:
-            flash('Bitte wählen Sie einen Trainingstag und einen Trainingsnamen aus.', 'error')
-            return redirect(url_for('workout_plan'))
+            elif action == 'add_to_day':
+                day = request.form['day']
+                training_id = request.form['training_id']
+                if day and training_id:
+                    new_training_day = TrainingDay(day=day, training_id=training_id)
+                    db.session.add(new_training_day)
+                    db.session.commit()
 
-        # Erstelle oder aktualisiere den WorkoutDay-Eintrag
-        workout_day = WorkoutDay.query.filter_by(user_id=current_user.get_id(), day_name=day_name).first()
-        if workout_day:
-            # Aktualisiere den bestehenden Eintrag
-            workout_day.exercise_name = exercise_name
-            flash('Trainingstag aktualisiert.', 'success')
-        else:
-            # Erstelle einen neuen Eintrag, wenn noch nicht vorhanden
-            workout_day = WorkoutDay(user_id=current_user.get_id(), day_name=day_name, exercise_name=exercise_name)
-            db.session.add(workout_day)
-            flash('Trainingstag hinzugefügt.', 'success')
-        
-        db.session.commit()
-        return redirect(url_for('workout_plan'))
+            elif action == 'reset_week':
+                TrainingDay.query.delete()
+                db.session.commit()
+                
+            elif action == 'delete_training':
+                training_id = request.form['training_id']
+                Training.query.filter_by(id=training_id).delete()
+                db.session.commit()
+                
+            elif action == 'delete_training_day':
+                training_day_id = request.form['training_day_id']
+                TrainingDay.query.filter_by(id=training_day_id).delete()
+                db.session.commit()
 
-    # Lade alle WorkoutDays des aktuellen Benutzers
-    workout_days = WorkoutDay.query.filter_by(user_id=current_user.get_id()).all()
-    return render_template('workout-plan.html', workout_days=workout_days)
+            elif action == 'edit_training_day':
+                training_day_id = request.form.get('training_day_id')
+                new_day = request.form.get('day')
+                new_training_name = request.form.get('training_name')
+                training_day = TrainingDay.query.get(training_day_id)
+                training = Training.query.get(training_day.training_id)
 
-#löschen workout
-@app.route('/delete-workout-day/<int:workout_day_id>', methods=['POST'])
+                if training_day and training:
+                    training_day.day = new_day
+                    training.name = new_training_name
+                    db.session.commit()
+
+    trainings = Training.query.all()
+    training_days = TrainingDay.query.all()
+    return render_template('workoutplan.html', trainings=trainings, training_days=training_days)
+
+#workoutplan add
+@app.route('/workoutplan/add', methods=['POST'])
 @login_required
-def delete_workout_day(workout_day_id):
-    workout_day = WorkoutDay.query.get_or_404(workout_day_id)
-    if workout_day.user_id != current_user.get_id():
-        flash('Unbefugter Zugriff.', 'error')
-        return redirect(url_for('workout_plan'))
+def add_training_and_day():
+    training_name = request.form['training_name']
+    day = request.form['day']
     
-    db.session.delete(workout_day)
+    # Überprüfen, ob das Training bereits existiert
+    training = Training.query.filter_by(name=training_name).first()
+    if not training:
+        # Erstellen Sie ein neues Training, wenn es noch nicht existiert
+        training = Training(name=training_name)
+        db.session.add(training)
+        db.session.commit()
+
+    # Training dem Tag zuordnen
+    training_day = TrainingDay(day=day, training_id=training.id)
+    db.session.add(training_day)
     db.session.commit()
-    flash('Trainingstag gelöscht.', 'success')
+
     return redirect(url_for('workout_plan'))
 
 
+@app.route('/workoutplan/delete', methods=['POST'])
+@login_required
+def delete_training_or_day():
+    if 'training_id' in request.form:
+        # Ein bestimmtes Training löschen
+        training_id = request.form['training_id']
+        Training.query.filter_by(id=training_id).delete()
+        db.session.commit()
+    elif 'training_day_id' in request.form:
+        # Einen bestimmten Trainingstag löschen
+        training_day_id = request.form['training_day_id']
+        TrainingDay.query.filter_by(id=training_day_id).delete()
+        db.session.commit()
 
+    return redirect(url_for('workout_plan'))
+
+#Trainingsinhalt route
+@app.route('/trainingsinhalt/<string:day>/<string:training_name>')
+@login_required
+def trainingsinhalt(day, training_name):
+    # Verbesserte Logik zum Abrufen des TrainingDay-Objekts und seiner Trainingsinhalte
+    training_day = TrainingDay.query \
+        .join(Training, TrainingDay.training_id == Training.id) \
+        .filter(TrainingDay.day == day, Training.name == training_name) \
+        .first()
+
+    if training_day:
+        trainingsinhalte = TrainingInhalt.query.filter_by(training_day_id=training_day.id).all()
+        # Rendern Sie die Trainingsinhalt-Seite und übergeben Sie die Trainingsinhalte sowie die ID des Trainingstages für das Hinzufügen neuer Inhalte
+        return render_template('trainingsinhalt.html', day=day, training_name=training_name, trainingsinhalte=trainingsinhalte, training_day_id=training_day.id)
+    else:
+        flash('Trainingstag nicht gefunden.', 'danger')
+        return redirect(url_for('trainingsinhalt'))  # Leiten Sie um zu einer geeigneten Seite, wenn das Training nicht gefunden wurde
+
+
+#add trainingsinhalt
+@app.route('/add_trainingsinhalt', methods=['POST'])
+@login_required
+def add_trainingsinhalt():
+    training_day_id = request.form.get('training_day_id')
+    uebungsname = request.form.get('uebungsname')
+    gewicht = request.form.get('gewicht')
+    saetze = request.form.get('saetze')
+    wiederholungen = request.form.get('wiederholungen')
+
+    # Überprüfung, ob alle Felder ausgefüllt sind
+    if not all([training_day_id, uebungsname, gewicht, saetze, wiederholungen]):
+        flash('Alle Felder müssen ausgefüllt werden.', 'danger')
+        return redirect(request.referrer)
+
+    # Versuch, den neuen Trainingsinhalt hinzuzufügen
+    try:
+        neuer_trainingsinhalt = TrainingInhalt(
+            uebungsname=uebungsname,
+            gewicht=float(gewicht),
+            saetze=int(saetze),
+            wiederholungen=int(wiederholungen),
+            training_day_id=int(training_day_id)
+        )
+
+        db.session.add(neuer_trainingsinhalt)
+        db.session.commit()
+        flash('Übung erfolgreich hinzugefügt!', 'success')
+    except Exception as e:
+        db.session.rollback()
+        flash(f'Fehler beim Hinzufügen der Übung: {e}', 'danger')
+        return redirect(request.referrer)
+
+    # Abrufen des TrainingDay-Objekts, um die Umleitung korrekt durchzuführen
+    training_day = TrainingDay.query.get(training_day_id)
+    if training_day:
+        day = training_day.day
+        training_name = training_day.training.name
+        return redirect(url_for('trainingsinhalt', day=day, training_name=training_name))
+    else:
+        flash('Trainingstag nicht gefunden.', 'danger')
+        return redirect(url_for('trainingsinahlt'))  # Oder eine andere Seite, die als Fallback dient
+
+#remove trainingsinhalt
+@app.route('/remove_trainingsinhalt/<int:inhalt_id>', methods=['POST'])
+@login_required
+def remove_trainingsinhalt(inhalt_id):
+    # Finden Sie den Trainingsinhalt, der gelöscht werden soll
+    inhalt = TrainingInhalt.query.get(inhalt_id)
+    if inhalt:
+        try:
+            db.session.delete(inhalt)
+            db.session.commit()
+            flash('Der Trainingsinhalt wurde erfolgreich entfernt.', 'success')
+        except Exception as e:
+            db.session.rollback()
+            flash('Es gab ein Problem beim Entfernen des Trainingsinhalts: {}'.format(e), 'danger')
+    else:
+        flash('Trainingsinhalt nicht gefunden.', 'danger')
+
+    # Leiten Sie den Benutzer zurück zur Seite, von der er gekommen ist
+    return redirect(request.referrer)
 
 
 # Route für Dashboard
