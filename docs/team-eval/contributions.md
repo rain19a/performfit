@@ -24,7 +24,7 @@ Diese bewusste Entscheidung erlaubte es uns, effektiver zu arbeiten, indem jeder
 
 ## Ömer Öztürk - Dokumentation
 
-### Erstellung der Dokumentationsstruktur:
+### Erstellung der Dokumentationsstruktur
     Ich entwickelte das Grundgerüst der Dokumentation, das es dem Team und den Stakeholdern ermöglichte, einen klaren und strukturierten Überblick über das gesamte Projekt zu erhalten.
 
 ### Value Proposition
