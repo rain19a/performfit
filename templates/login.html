@@ -1,28 +1,65 @@
-<!-- templates/login.html -->
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login-Seite</title>
+    <!-- Bootstrap CSS einbinden -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         .error {
             color: red;
         }
+        .form-signin {
+            width: 100%;
+            max-width: 330px;
+            padding: 15px;
+            margin: auto;
+        }
+        .form-signin .checkbox {
+            font-weight: 400;
+        }
+        .form-signin .form-control {
+            position: relative;
+            box-sizing: border-box;
+            height: auto;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .form-signin .form-control:focus {
+            z-index: 2;
+        }
+        .form-signin input[type="text"] {
+            margin-bottom: -1px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        .form-signin input[type="password"] {
+            margin-bottom: 10px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
     </style>
 </head>
-<body>
-    <h1>Login-Seite</h1>
-    {% if error_message %}
-        <p class="error">{{ error_message }}</p>
-    {% endif %}
-    <form action="{{ url_for('login') }}" method="post">
-        <input type="text" name="username" placeholder="Benutzername" required><br>
-        <input type="password" name="password" placeholder="Passwort" required><br>
-        <input type="submit" value="Einloggen"><br>
-        <button type="button" onclick="location.href='/register';">Registrieren</button><br>
-        <!-- Der Button unten führt zur Registrierungsseite -->
-        <button type="button" onclick="location.href='/';">Zurück zur Startseite</button>
+<body class="text-center">
+    <form class="form-signin" action="{{ url_for('login') }}" method="post">
+        <h1 class="h3 mb-3 font-weight-normal">Bitte einloggen</h1>
+        {% if error_message %}
+            <p class="error">{{ error_message }}</p>
+        {% endif %}
+        <label for="inputUsername" class="sr-only">Benutzername</label>
+        <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Benutzername" required autofocus>
+        <label for="inputPassword" class="sr-only">Passwort</label>
+        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Passwort" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Einloggen</button>
+        <button class="btn btn-lg btn-secondary btn-block" type="button" onclick="location.href='/register';">Registrieren</button>
+        <button class="btn btn-lg btn-secondary btn-block" type="button" onclick="location.href='/';">Zurück zur Startseite</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2024</p>
     </form>
+    <!-- Optional JavaScript und Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
