@@ -22,6 +22,7 @@ nav_order: 3
 ## Datenbankdesign für Workout-Informationen
 
 ### Meta
+{: .no_toc }
 - **Status:** Fertig - Entschieden
 - **Aktualisiert am:** 11.01.2024
 
