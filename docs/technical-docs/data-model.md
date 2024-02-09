@@ -18,4 +18,4 @@ nav_order: 3
 </details>
 
 
-![UML-Diagramm der PerformFit WebApp](umldiagramm.drawio.png)
+![UML-Diagramm von PerformFit WebApp](../assets/images/umldiagramm.drawio.png)
