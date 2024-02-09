@@ -34,42 +34,37 @@ nav_order: 4
 Weiterleitung zum 'fragenkatalog' bei erfolgreicher Registrierung.
 
 
-<pre lang="no-highlight"><code>
+`return redirect(url_for('fragenkatalog'))`
 
-return redirect(url_for('fragenkatalog'))
-
-</code></pre>
 
 Bei Misserfolg aufgrund eines bereits existierenden Benutzernamens oder E-Mail-Adresse:
 
-<pre lang="no-highlight"><code>
-return render_template('registration.html', error_message=error_message)
-</code></pre>
+
+`return render_template('registration.html', error_message=error_message)`
 
 
-login()
 
-Route: /login/
+### `login()`
 
-Methoden: POST
+**Route:** `/login/`
 
-Zweck: Melde einen vorhandenen Benutzer mit ihrem Benutzernamen und Passwort an.
+**Methoden:**  `POST` 
+
+**Purpose:** Zweck: Melde einen vorhandenen Benutzer mit ihrem Benutzernamen und Passwort an.
 
 Weiterleitung zum 'dashboard' bei erfolgreicher Anmeldung.
 
-<pre lang="no-highlight"><code>
-return redirect(url_for('dashboard'))
-</code></pre>
+
+`return redirect(url_for('dashboard'))` 
+
 
 Bei Misserfolg aufgrund falscher Anmeldeinformationen:
 
-<pre lang="no-highlight"><code>
-return "Falscher Benutzername oder Passwort"
+` return "Falscher Benutzername oder Passwort"` 
 
-</code></pre>
 
-logout()
-Route: /logout/
+` logout()` 
+Route: ` /logout/` 
 
 Methoden: GET
 
@@ -77,9 +72,8 @@ Zweck: Meldet den aktuellen Benutzer ab.
 
 Weiterleitung zur 'index' nach der Abmeldung.
 
-<pre lang="no-highlight"><code>
-return redirect(url_for('index'))
-</code></pre>
+` return redirect(url_for('index'))` 
+
 
 
 ---
@@ -94,13 +88,12 @@ return redirect(url_for('index'))
 
 **Sample output:**
 
-<pre lang="no-highlight"><code>
-return render_template('dashboard.html')
-</code></pre>
+
+` return render_template('dashboard.html')` 
 
 ---
 
-##Fortschrittsverfolgung
+## Fortschrittsverfolgung
 
 **Route:** `/fortschritt/`
 
@@ -112,13 +105,12 @@ return render_template('dashboard.html')
 
 Rendert das 'fortschritt.html' Template mit visuellen Darstellungen der Fortschrittsdaten des Benutzers.
 
-<pre lang="no-highlight"><code>
-return render_template('fortschritt.html', 
-                       user=user, 
-                       entfernung_zum_ziel=entfernung_zum_ziel, 
-                       slept_well_data=slept_well_data, 
-                       workout_data=workout_data)
-</code></pre>
+`return render_template('fortschritt.html', ` 
+                      `  user=user, ` 
+                    ` entfernung_zum_ziel=entfernung_zum_ziel, ` 
+                       ` slept_well_data=slept_well_data, ` 
+                       ` workout_data=workout_data) ` 
+
 
 ---
 
@@ -136,9 +128,9 @@ return render_template('fortschritt.html',
 
 Rendert das 'workoutplan.html' Template mit den vorhandenen Workouts des Benutzers und ermöglicht CRUD-Operationen.
 
-<pre lang="no-highlight"><code>
-return render_template('workoutplan.html', trainings=trainings, training_days=training_days)
-</code></pre>
+
+` return render_template('workoutplan.html', trainings=trainings, training_days=training_days)` 
+
 
 ---
 
@@ -156,9 +148,8 @@ return render_template('workoutplan.html', trainings=trainings, training_days=tr
 
 Rendert das 'trainingsinhalt.html' Template mit den Details der ausgewählten Trainingssitzung.
 
-<pre lang="no-highlight"><code>
-return render_template('trainingsinhalt.html', day=day, training_name=training_name, trainingsinhalte=trainingsinhalte, training_day_id=training_day.id)
-</code></pre>
+
+` return render_template('trainingsinhalt.html', day=day, training_name=training_name, trainingsinhalte=trainingsinhalte, training_day_id=training_day.id)` 
 
 ---
 
@@ -176,13 +167,13 @@ return render_template('trainingsinhalt.html', day=day, training_name=training_n
 
 Weiterleitung zum 'workout_plan' nach Hinzufügen des Trainings und des Trainingstages.
 
-<pre lang="no-highlight"><code>
-return redirect (url_for('workout_plan'))
-</code></pre>
 
-### delete_training_or_day()
+` return redirect (url_for('workout_plan'))` 
 
-**Route:** /workoutplan/delete/
+
+### ` delete_training_or_day()` 
+
+**Route:** ` /workoutplan/delete/` 
 
 **Methods:** `POST`
 
@@ -192,12 +183,11 @@ return redirect (url_for('workout_plan'))
 
 Weiterleitung zum 'workout_plan' nach dem Löschen des Trainings oder des Trainingstages.
 
-<pre lang="no-highlight"><code>
-return redirect(url_for('workout_plan'))
-</code></pre>
+
+` return redirect(url_for('workout_plan'))` 
 
 
-**Route:** add_trainingsinhalt()
+**Route:** ` add_trainingsinhalt()` 
 
 **Methods:** `POST`
 
@@ -207,20 +197,20 @@ return redirect(url_for('workout_plan'))
 
 Nach erfolgreichem Hinzufügen Weiterleitung zur 'trainingsinhalt' Seite.
 
-<pre lang="no-highlight"><code>
-return redirect(url_for('trainingsinhalt', day=day, training_name=training_name))
-</code></pre>
+
+` return redirect(url_for('trainingsinhalt', day=day, training_name=training_name))` 
+
 
 Bei einem Fehler wird eine Fehlermeldung angezeigt und der Benutzer zur vorherigen Seite zurückgeleitet.
 
-<pre lang="no-highlight"><code>
-flash(f'Fehler beim Hinzufügen der Übung: {e}', 'danger')
-return redirect(request.referrer)
-</code></pre>
 
-### remove_trainingsinhalt()
+` flash(f'Fehler beim Hinzufügen der Übung: {e}', 'danger')` 
+` return redirect(request.referrer)` 
 
-**Route:**/remove_trainingsinhalt/<int:inhalt_id>/
+
+### ` remove_trainingsinhalt()` 
+
+**Route:** ` /remove_trainingsinhalt/<int:inhalt_id>/` 
 
 **Methods:** `POST`
 
@@ -228,7 +218,6 @@ return redirect(request.referrer)
 
 Nach dem Entfernen Weiterleitung zur vorherigen Seite.
 
-<pre lang="no-highlight"><code>
-return redirect(request.referrer)
-</code></pre>
+` return redirect(request.referrer)` 
+
 
