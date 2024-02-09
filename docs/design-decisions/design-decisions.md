@@ -119,48 +119,67 @@ Bootstrap wurde in unser Entwicklungsworkflow integriert, um die Benutzeroberfl�
 
 ---
 
-## 04: ----
 
+## 04. Gestaltung der Startseite mit Bild
 
 ### Meta
 {: .no_toc }
-Status
-: **Work in progress** - Decided 
+- **Status:** Fertig - Entschieden
+- **Aktualisiert am:** 14.12.2023
 
-Updated
-: 11-01-2024
-
-### Problem statement
+### Problemstellung
 {: .no_toc }
+Die Gestaltung der Startseite ist kritisch für den ersten Eindruck der Nutzer. Es galt zu entscheiden, ob die Startseite direkt mit einem Login beginnen oder mit einem einladenden Bild, um die Nutzer willkommen zu heißen.
 
-
-### Decision
+### Entscheidung
 {: .no_toc }
+Es wurde entschieden, die Startseite mit einem Bild zu gestalten, um eine einladende Atmosphäre zu schaffen. Dies soll helfen, die Nutzer positiv zu stimmen und ihr Interesse an der Plattform zu wecken, bevor sie aufgefordert werden, sich anzumelden oder zu registrieren.
 
-
-### Regarded options
+### Betrachtete Optionen
 {: .no_toc }
+- **Startseite mit Login:**
+  - **Vorteil:** Schneller Zugriff auf Benutzerkonten.
+  - **Nachteil:** Kann als unfreundlich oder geschäftsmäßig wahrgenommen werden.
+- **Startseite mit Bild:**
+  - **Vorteil:** Schafft eine einladende und warme Erstbegegnung.
+  - **Nachteil:** Verzögert möglicherweise den Zugang zu Benutzerfunktionen.
+
+### Umsetzung
+{: .no_toc }
+Die Startseite wird ein ansprechendes, thematisch passendes Bild anzeigen, das die Kernbotschaft der Plattform visuell vermittelt. Die Option zum Login oder zur Registrierung wird dezent, aber deutlich sichtbar platziert.
 
 ---
 
-## 05: ----
-
+## 05. Dashboard als Startpunkt nach dem Login
 
 ### Meta
 {: .no_toc }
-Status
-: **Work in progress** - Decided 
+- **Status:** Fertig - Entschieden
+- **Aktualisiert am:** 17.01.2024
 
-Updated
-: 11-01-2024
-
-### Problem statement
+### Problemstellung
 {: .no_toc }
+Nach dem Login muss entschieden werden, welche Seite den Nutzern als erstes präsentiert wird. Die Wahl stand zwischen dem Fortschrittstracker, dem Dashboard und dem Workoutplan.
 
-
-### Decision
+### Entscheidung
 {: .no_toc }
+Das Dashboard wird als erste Seite nach dem Login festgelegt. Dies wurde entschieden, da die Nutzer hier ihre Einträge machen, die dann auf dem Fortschrittstracker zu sehen sind. Somit ist das Dashboard der zentrale Anlaufpunkt für die Nutzeraktivitäten.
 
-
-### Regarded options
+### Betrachtete Optionen
 {: .no_toc }
+- **Fortschrittstracker als Startseite:**
+  - **Vorteil:** Fokus auf die Überwachung der Fortschritte.
+  - **Nachteil:** Weniger Kontext für neue Einträge oder Überblick.
+- **Dashboard:**
+  - **Vorteil:** Zentraler Anlaufpunkt für alle Nutzeraktivitäten.
+  - **Nachteil:** Könnte überladen wirken, wenn nicht gut strukturiert.
+- **Workoutplan:**
+  - **Vorteil:** Direkter Start in die Trainingsplanung.
+  - **Nachteil:** Vernachlässigt andere wichtige Aspekte wie Fortschrittsüberwachung.
+
+### Umsetzung
+{: .no_toc }
+Das Dashboard wird so gestaltet, dass es eine Übersicht der letzten Aktivitäten sowie schnellen Zugriff auf die wichtigsten Funktionen bietet. Ein klar strukturiertes Layout soll dabei helfen, Überladung zu vermeiden.
+
+---
+
