@@ -16,3 +16,6 @@ nav_order: 3
 + ToC
 {: toc }
 </details>
+
+
+![UML-Diagramm von PerformFit WebApp](../assets/images/umldiagramm.drawio.png)

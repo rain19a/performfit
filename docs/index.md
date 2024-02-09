@@ -3,7 +3,7 @@ title: Introduction
 nav_order: 0
 ---
 
-## Überblick
+# Überblick
 
 Willkommen zur offiziellen Dokumentation von PerformFit, Ihrer innovativen Lösung für digitales Fitness-Tracking und -Management. Dieser Leitfaden bietet einen umfassenden Überblick über die Funktionen und den Einsatz der PerformFit-App sowie Anleitungen zur Nutzung und Entwicklung.
 
