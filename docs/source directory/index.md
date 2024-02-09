@@ -17,16 +17,15 @@ nav_order: 6
 
 ## Literaturverzeichnis
 
-<<<<<<< HEAD
-1. 
-=======
+
+
 1. Chat GPT für Bugfixes und Einteilung des Codes in Über- und Unterschriften. 
    [ChatGPT] (https://chat.openai.com/), letzer Zugriff 09.02.2024
 2. ChatGPT verwendet, um Bootstrap-Links für CSS und JavaScript zu erhalten, um Bootstrap-Funktionalitäten in Webprojekte einzubinden.
    [ChatGPT] (https://chat.openai.com/), letzer Zugriff 09.02.2024
 3. Chat GPT für Methodenerklärung teilweise verwendet. Auch, um anregungen zu geben, wenn man mit dem implementieren überhaupt nicht weitergekommen ist.
    [ChatGPT] (https://chat.openai.com/), letzer Zugriff 09.02.2024
->>>>>>> 472cba3cf33c21b0d4dbb9898daf114317d74e3b
+
 
 ## Abbildungsverzeichnis
 
