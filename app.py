@@ -1,12 +1,13 @@
-from flask import render_template, request, redirect, url_for
+from flask import Flask, flash, render_template, request, redirect, url_for
 from werkzeug.security import check_password_hash
 from db import app, db, User
 from flask import jsonify
-from db import app, db, User, Progress
+from db import app, db, User, Progress, WorkoutDay, Workout
 from datetime import timedelta
 from datetime import date
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from flask_login import login_user
+
 
 #neu
 app.config['SECRET_KEY'] = 'ein-geheimer-schlüssel'  # Setzen Sie einen sicheren Wert
@@ -95,6 +96,54 @@ def submit_fragenkatalog():
     db.session.commit()
 
     return redirect(url_for('dashboard'))
+
+@app.route('/workout-plan', methods=['GET', 'POST'])
+@login_required
+def workout_plan():
+    if request.method == 'POST':
+        day_name = request.form.get('day_name')
+        exercise_name = request.form.get('exercise_name')
+
+        # Überprüfe, ob day_name und exercise_name vorhanden sind
+        if not day_name or not exercise_name:
+            flash('Bitte wählen Sie einen Trainingstag und einen Trainingsnamen aus.', 'error')
+            return redirect(url_for('workout_plan'))
+
+        # Erstelle oder aktualisiere den WorkoutDay-Eintrag
+        workout_day = WorkoutDay.query.filter_by(user_id=current_user.get_id(), day_name=day_name).first()
+        if workout_day:
+            # Aktualisiere den bestehenden Eintrag
+            workout_day.exercise_name = exercise_name
+            flash('Trainingstag aktualisiert.', 'success')
+        else:
+            # Erstelle einen neuen Eintrag, wenn noch nicht vorhanden
+            workout_day = WorkoutDay(user_id=current_user.get_id(), day_name=day_name, exercise_name=exercise_name)
+            db.session.add(workout_day)
+            flash('Trainingstag hinzugefügt.', 'success')
+        
+        db.session.commit()
+        return redirect(url_for('workout_plan'))
+
+    # Lade alle WorkoutDays des aktuellen Benutzers
+    workout_days = WorkoutDay.query.filter_by(user_id=current_user.get_id()).all()
+    return render_template('workout-plan.html', workout_days=workout_days)
+
+#löschen workout
+@app.route('/delete-workout-day/<int:workout_day_id>', methods=['POST'])
+@login_required
+def delete_workout_day(workout_day_id):
+    workout_day = WorkoutDay.query.get_or_404(workout_day_id)
+    if workout_day.user_id != current_user.get_id():
+        flash('Unbefugter Zugriff.', 'error')
+        return redirect(url_for('workout_plan'))
+    
+    db.session.delete(workout_day)
+    db.session.commit()
+    flash('Trainingstag gelöscht.', 'success')
+    return redirect(url_for('workout_plan'))
+
+
+
 
 
 # Route für Dashboard

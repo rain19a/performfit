@@ -52,6 +52,7 @@ class WorkoutDay(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     day_name = db.Column(db.String(50), nullable=False)
+    exercise_name = db.Column(db.String(100), nullable=True)  # Neues Feld für den Trainingsnamen
     user = db.relationship('User', backref=db.backref('workout_days', lazy=True))
 
 class Workout(db.Model):
