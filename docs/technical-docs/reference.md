@@ -25,7 +25,7 @@ nav_order: 4
 
 **Route:** `/register/`
 
-**Methods:** `POST` 
+**Methods:** 'GET', 'POST' 
 
 **Purpose:** Registriere einen neuen Benutzer mit den angegebenen Details.
 
@@ -48,7 +48,7 @@ Bei Misserfolg aufgrund eines bereits existierenden Benutzernamens oder E-Mail-A
 
 **Route:** `/login/`
 
-**Methoden:**  `POST` 
+**Methoden:**  'GET', 'POST' 
 
 **Purpose:** Zweck: Melde einen vorhandenen Benutzer mit ihrem Benutzernamen und Passwort an.
 
@@ -66,7 +66,7 @@ Bei Misserfolg aufgrund falscher Anmeldeinformationen:
 ` logout()` 
 Route: ` /logout/` 
 
-Methoden: GET
+Methoden: 
 
 Zweck: Meldet den aktuellen Benutzer ab.
 
@@ -93,7 +93,7 @@ Weiterleitung zur 'index' nach der Abmeldung.
 
 ---
 
-## Fortschrittsverfolgung
+## Fortschritt
 
 **Route:** `/fortschritt/`
 
