@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trainingsinhalt</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-3">
+    <h2>Trainingsinhalt</h2>
+
+    <!-- Flash-Nachrichten anzeigen -->
+    {% for message in get_flashed_messages(category_filter=["success", "danger"]) %}
+        <div class="alert alert-{{ message.category }}">{{ message.message }}</div>
+    {% endfor %}
+    
+    <!-- Formular zum Hinzufügen von Trainingsinhalten -->
+    <form action="{{ url_for('add_trainingsinhalt') }}" method="post">
+        <input type="hidden" name="training_day_id" value="{{ training_day_id }}">
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="uebungsname">Übungsname</label>
+                <input type="text" class="form-control" id="uebungsname" name="uebungsname" required>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="gewicht">Gewicht</label>
+                <input type="number" class="form-control" id="gewicht" name="gewicht" step="0.01" required>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="saetze">Sätze</label>
+                <input type="number" class="form-control" id="saetze" name="saetze" required>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="wiederholungen">Wiederholungen</label>
+                <input type="number" class="form-control" id="wiederholungen" name="wiederholungen" required>
+            </div>
+            <div class="form-group col-md-3 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary mb-2">Hinzufügen</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Tabelle mit Trainingsinhalten -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Übungsname</th>
+                <th scope="col">Gewicht</th>
+                <th scope="col">Sätze</th>
+                <th scope="col">Wiederholungen</th>
+                <th scope="col">Aktion</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for inhalt in trainingsinhalte %}
+                <tr>
+                    <td>{{ inhalt.uebungsname }}</td>
+                    <td>{{ inhalt.gewicht }}</td>
+                    <td>{{ inhalt.saetze }}</td>
+                    <td>{{ inhalt.wiederholungen }}</td>
+                    <td>
+                        <!-- Button zum Entfernen eines Trainingsinhalts -->
+                        <form action="{{ url_for('remove_trainingsinhalt', inhalt_id=inhalt.id) }}" method="post">
+                            <button type="submit" class="btn btn-danger btn-sm">Entfernen</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <button type="button" class="btn btn-secondary" onclick="history.back()">Zurück</button>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

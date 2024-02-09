@@ -33,23 +33,31 @@
             <button type="submit" class="btn btn-primary">Training und Tag hinzufügen</button>
         </form>
 
+        <!-- Logout und Zurück zum Dashboard Buttons -->
+        <a href="/logout" class="btn btn-info mb-3">Logout</a>
+        <a href="/dashboard" class="btn btn-info mb-3">Zurück zum Dashboard</a>
+
         <!-- Anzeigen der aktuellen Trainings und Trainingstage -->
         <h2>Vorhandene Trainings und Trainingstage</h2>
-        <div class="list-group">
-            {% for training_day in training_days %}
-                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+        {% for training_day in training_days %}
+            <div class="alert alert-light" role="alert">
+                <a href="{{ url_for('trainingsinhalt', day=training_day.day, training_name=training_day.training.name) }}">
                     {{ training_day.day }}: {{ training_day.training.name }}
-                    <form action="/workoutplan/delete" method="post" class="d-inline">
-                        <input type="hidden" name="training_day_id" value="{{ training_day.id }}">
-                        <button type="submit" class="btn btn-danger btn-sm">Löschen</button>
-                    </form>
                 </a>
-            {% endfor %}
-        </div>
+                <!-- Möglichkeit, einen Trainingstag zu löschen -->
+                <form action="/workoutplan/delete" method="post" style="display: inline;">
+                    <input type="hidden" name="training_day_id" value="{{ training_day.id }}">
+                    <button type="submit" class="btn btn-danger btn-sm">Löschen</button>
+                </form>
+            </div>
+        {% endfor %}
+
     </div>
+
     <!-- Bootstrap JS und Abhängigkeiten -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+

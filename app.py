@@ -2,7 +2,7 @@ from flask import Flask, flash, render_template, request, redirect, url_for
 from werkzeug.security import check_password_hash
 from db import app, db, User
 from flask import jsonify
-from db import app, db, User, Progress, Training, TrainingDay
+from db import app, db, User, Progress, Training, TrainingDay, TrainingInhalt
 from datetime import timedelta
 from datetime import date
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
@@ -101,6 +101,7 @@ def submit_fragenkatalog():
 
 # Route für Workout-Plan
 @app.route('/workoutplan', methods=['GET', 'POST'])
+@login_required
 def workout_plan():
     if request.method == 'POST':
         if 'action' in request.form:
@@ -155,6 +156,7 @@ def workout_plan():
 
 #neu
 @app.route('/workoutplan/add', methods=['POST'])
+@login_required
 def add_training_and_day():
     training_name = request.form['training_name']
     day = request.form['day']
@@ -176,6 +178,7 @@ def add_training_and_day():
 
 
 @app.route('/workoutplan/delete', methods=['POST'])
+@login_required
 def delete_training_or_day():
     if 'training_id' in request.form:
         # Ein bestimmtes Training löschen
@@ -189,6 +192,87 @@ def delete_training_or_day():
         db.session.commit()
 
     return redirect(url_for('workout_plan'))
+
+#Trainingsinhalt route
+@app.route('/trainingsinhalt/<string:day>/<string:training_name>')
+@login_required
+def trainingsinhalt(day, training_name):
+    # Verbesserte Logik zum Abrufen des TrainingDay-Objekts und seiner Trainingsinhalte
+    training_day = TrainingDay.query \
+        .join(Training, TrainingDay.training_id == Training.id) \
+        .filter(TrainingDay.day == day, Training.name == training_name) \
+        .first()
+
+    if training_day:
+        trainingsinhalte = TrainingInhalt.query.filter_by(training_day_id=training_day.id).all()
+        # Rendern Sie die Trainingsinhalt-Seite und übergeben Sie die Trainingsinhalte sowie die ID des Trainingstages für das Hinzufügen neuer Inhalte
+        return render_template('trainingsinhalt.html', day=day, training_name=training_name, trainingsinhalte=trainingsinhalte, training_day_id=training_day.id)
+    else:
+        flash('Trainingstag nicht gefunden.', 'danger')
+        return redirect(url_for('trainingsinhalt'))  # Leiten Sie um zu einer geeigneten Seite, wenn das Training nicht gefunden wurde
+
+
+#add trainingsinhalt
+@app.route('/add_trainingsinhalt', methods=['POST'])
+def add_trainingsinhalt():
+    training_day_id = request.form.get('training_day_id')
+    uebungsname = request.form.get('uebungsname')
+    gewicht = request.form.get('gewicht')
+    saetze = request.form.get('saetze')
+    wiederholungen = request.form.get('wiederholungen')
+
+    # Überprüfung, ob alle Felder ausgefüllt sind
+    if not all([training_day_id, uebungsname, gewicht, saetze, wiederholungen]):
+        flash('Alle Felder müssen ausgefüllt werden.', 'danger')
+        return redirect(request.referrer)
+
+    # Versuch, den neuen Trainingsinhalt hinzuzufügen
+    try:
+        neuer_trainingsinhalt = TrainingInhalt(
+            uebungsname=uebungsname,
+            gewicht=float(gewicht),
+            saetze=int(saetze),
+            wiederholungen=int(wiederholungen),
+            training_day_id=int(training_day_id)
+        )
+
+        db.session.add(neuer_trainingsinhalt)
+        db.session.commit()
+        flash('Übung erfolgreich hinzugefügt!', 'success')
+    except Exception as e:
+        db.session.rollback()
+        flash(f'Fehler beim Hinzufügen der Übung: {e}', 'danger')
+        return redirect(request.referrer)
+
+    # Abrufen des TrainingDay-Objekts, um die Umleitung korrekt durchzuführen
+    training_day = TrainingDay.query.get(training_day_id)
+    if training_day:
+        day = training_day.day
+        training_name = training_day.training.name
+        return redirect(url_for('trainingsinhalt', day=day, training_name=training_name))
+    else:
+        flash('Trainingstag nicht gefunden.', 'danger')
+        return redirect(url_for('trainingsinahlt'))  # Oder eine andere Seite, die als Fallback dient
+
+#remove trainingsinhalt
+@app.route('/remove_trainingsinhalt/<int:inhalt_id>', methods=['POST'])
+def remove_trainingsinhalt(inhalt_id):
+    # Finden Sie den Trainingsinhalt, der gelöscht werden soll
+    inhalt = TrainingInhalt.query.get(inhalt_id)
+    if inhalt:
+        try:
+            db.session.delete(inhalt)
+            db.session.commit()
+            flash('Der Trainingsinhalt wurde erfolgreich entfernt.', 'success')
+        except Exception as e:
+            db.session.rollback()
+            flash('Es gab ein Problem beim Entfernen des Trainingsinhalts: {}'.format(e), 'danger')
+    else:
+        flash('Trainingsinhalt nicht gefunden.', 'danger')
+
+    # Leiten Sie den Benutzer zurück zur Seite, von der er gekommen ist
+    return redirect(request.referrer)
+
 
 # Route für Dashboard
 @app.route('/dashboard', methods=['GET', 'POST'])
