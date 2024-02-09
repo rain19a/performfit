@@ -121,22 +121,25 @@ def workout_plan():
                 day = request.form['day']
                 training_id = request.form['training_id']
                 if day and training_id:
-                    new_training_day = TrainingDay(day=day, training_id=training_id)
-                    db.session.add(new_training_day)
-                    db.session.commit()
-
+                    training = Training.query.filter_by(id=training_id).first()
+                    if training:
+                        new_training_day = TrainingDay(day=day, training_id=training_id, user_id=current_user.get_id())
+                        db.session.add(new_training_day)
+                        db.session.commit()
+            
+                        
             elif action == 'reset_week':
-                TrainingDay.query.delete()
+                TrainingDay.query.filter_by(user_id=current_user.get_id()).delete()
                 db.session.commit()
                 
             elif action == 'delete_training':
                 training_id = request.form['training_id']
-                Training.query.filter_by(id=training_id).delete()
+                Training.query.filter_by(id=training_id, user_id=current_user.get_id()).delete()
                 db.session.commit()
                 
             elif action == 'delete_training_day':
                 training_day_id = request.form['training_day_id']
-                TrainingDay.query.filter_by(id=training_day_id).delete()
+                TrainingDay.query.filter_by(id=training_day_id, user_id=current_user.get_id()).delete()
                 db.session.commit()
 
             elif action == 'edit_training_day':
@@ -151,8 +154,8 @@ def workout_plan():
                     training.name = new_training_name
                     db.session.commit()
 
-    trainings = Training.query.all()
-    training_days = TrainingDay.query.all()
+    trainings = Training.query.all()  # Trainings sind allgemein
+    training_days = TrainingDay.query.filter_by(user_id=current_user.get_id()).all()  # Trainingstage sind benutzerspezifisch
     return render_template('workoutplan.html', trainings=trainings, training_days=training_days)
 
 #workoutplan add
@@ -171,7 +174,7 @@ def add_training_and_day():
         db.session.commit()
 
     # Training dem Tag zuordnen
-    training_day = TrainingDay(day=day, training_id=training.id)
+    training_day = TrainingDay(day=day, training_id=training.id, user_id=current_user.get_id())
     db.session.add(training_day)
     db.session.commit()
 
@@ -181,16 +184,15 @@ def add_training_and_day():
 @app.route('/workoutplan/delete', methods=['POST'])
 @login_required
 def delete_training_or_day():
-    if 'training_id' in request.form:
-        # Ein bestimmtes Training löschen
-        training_id = request.form['training_id']
-        Training.query.filter_by(id=training_id).delete()
-        db.session.commit()
-    elif 'training_day_id' in request.form:
+    # Entfernen der Funktionalität, allgemein zugängliche Trainings zu löschen
+    # ...
+    
+    if 'training_day_id' in request.form:
         # Einen bestimmten Trainingstag löschen
         training_day_id = request.form['training_day_id']
-        TrainingDay.query.filter_by(id=training_day_id).delete()
+        TrainingDay.query.filter_by(id=training_day_id, user_id=current_user.get_id()).delete()
         db.session.commit()
+        flash('Trainingstag erfolgreich gelöscht.', 'success')
 
     return redirect(url_for('workout_plan'))
 
@@ -202,8 +204,9 @@ def trainingsinhalt(day, training_name):
     training_day = TrainingDay.query \
         .join(Training, TrainingDay.training_id == Training.id) \
         .filter(TrainingDay.day == day, Training.name == training_name) \
+        .filter(TrainingDay.user_id == current_user.get_id()) \
         .first()
-
+    
     if training_day:
         trainingsinhalte = TrainingInhalt.query.filter_by(training_day_id=training_day.id).all()
         # Rendern Sie die Trainingsinhalt-Seite und übergeben Sie die Trainingsinhalte sowie die ID des Trainingstages für das Hinzufügen neuer Inhalte
@@ -227,16 +230,24 @@ def add_trainingsinhalt():
     if not all([training_day_id, uebungsname, gewicht, saetze, wiederholungen]):
         flash('Alle Felder müssen ausgefüllt werden.', 'danger')
         return redirect(request.referrer)
+    
+    # Überprüfen, ob der TrainingDay dem aktuellen Benutzer gehört
+    training_day = TrainingDay.query.filter_by(id=training_day_id, user_id=current_user.get_id()).first()
+    if not training_day:
+        flash('Trainingstag nicht gefunden oder gehört nicht zum Benutzer.', 'danger')
+        return redirect(request.referrer)
+
 
     # Versuch, den neuen Trainingsinhalt hinzuzufügen
     try:
         neuer_trainingsinhalt = TrainingInhalt(
-            uebungsname=uebungsname,
-            gewicht=float(gewicht),
-            saetze=int(saetze),
-            wiederholungen=int(wiederholungen),
-            training_day_id=int(training_day_id)
-        )
+        uebungsname=uebungsname,
+        gewicht=float(gewicht),
+        saetze=int(saetze),
+        wiederholungen=int(wiederholungen),
+        training_day_id=int(training_day_id),
+        user_id=training_day.user_id  # Zuweisung der user_id vom TrainingDay
+    )
 
         db.session.add(neuer_trainingsinhalt)
         db.session.commit()
@@ -261,7 +272,7 @@ def add_trainingsinhalt():
 @login_required
 def remove_trainingsinhalt(inhalt_id):
     # Finden Sie den Trainingsinhalt, der gelöscht werden soll
-    inhalt = TrainingInhalt.query.get(inhalt_id)
+    inhalt = TrainingInhalt.query.filter_by(id=inhalt_id, user_id=current_user.get_id()).first()
     if inhalt:
         try:
             db.session.delete(inhalt)
@@ -307,7 +318,6 @@ def dashboard():
         return redirect(url_for('dashboard'))
     
     return render_template('dashboard.html')
-
 
 
 
