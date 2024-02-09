@@ -25,7 +25,9 @@ In der Entwicklung von PerformFit haben wir durch eine zielgerichtete Aufgabente
 
 
 - **Strukturierte Dokumentation**: Erstellung einer umfassenden und gut organisierten Dokumentation, die alle Aspekte der App abdeckt, von der Benutzerführung bis hin zu technischen Details.
+- 
 - **Fortschrittstracker**: Erfolgreiche Implementierung eines visuellen Fortschrittstrackers, der es den Nutzern ermöglicht, ihre Trainingsfortschritte und -aktivitäten effektiv zu überwachen.
+- 
 - **Benutzerinteraktion**: Analyse und Dokumentation des Benutzerflusses innerhalb der App, insbesondere im Hinblick auf die Registrierung, das Login und das Dashboard.
 
 ## Nicht erreichte Ziele
@@ -35,7 +37,9 @@ In der Entwicklung von PerformFit haben wir durch eine zielgerichtete Aufgabente
 - **Interaktive Elemente**: Wir hatten geplant, interaktive Elemente einzuführen, die das Nutzerengagement steigern, wie Gamification-Herausforderungen und soziale Sharing-Funktionen.
 
 - **Ernährungs-Reiter für Trainingsunterstützung**: Ein bedeutender, noch nicht realisierter Aspekt unserer App ist ein spezieller Bereich, in dem Nutzer auf eine Auswahl an vorgefertigten Rezepten zugreifen können, die auf ihre Trainingsziele abgestimmt sind. Diese Funktion soll den Nutzern helfen, ihre Ernährung mit ihrem Fitnessplan zu synchronisieren und ihre Ergebnisse zu optimieren.
+- 
 - **Benutzerdefinierte Integrationen**: Geplante Funktionen wie die Integration von persönlichen Trainer oder Ernährungstipps direkt in der App, die individuelle Unterstützung bieten.
+- 
 - **Abzeichen-System**: Ein ausgearbeitetes Abzeichen-System, das Nutzer für unterschiedliche Erfolge wie Trainingstreue, das Erreichen von Bestleistungen oder die Teilnahme an Community-Challenges belohnt, ist entworfen, aber noch nicht implementiert. Dieses Feature soll als Ansporn für die Nutzer dienen, ihre Aktivitäten in der App zu intensivieren und ihre Gesundheits- und Fitnessziele zu verfolgen.
 
 
