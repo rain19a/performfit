@@ -93,3 +93,73 @@ Lösung für die Nachteile
 Um das Problem mit dem „Zu-viel-des-Guten“ und der komplizierten Umsetzung zu lösen, haben wir uns was Cleveres überlegt: Wir bauen eine einfache Ja-Nein-Funktion ein. Damit können die Nutzer ihren Fortschritt markieren, ohne dass es zu überladen wird. So bleibt der Gridgraph übersichtlich und leicht zu verstehen.
 
 ---
+
+## 03: Gridgraph-Visualisierung - Farbwahl
+
+
+### Meta
+{: .no_toc }
+Status
+: **Work in progress** - Decided 
+
+Updated
+: 11-01-2024
+
+### Problem statement
+{: .no_toc }
+
+
+### Decision
+{: .no_toc }
+
+
+### Regarded options
+{: .no_toc }
+
+---
+
+## 04: ----
+
+
+### Meta
+{: .no_toc }
+Status
+: **Work in progress** - Decided 
+
+Updated
+: 11-01-2024
+
+### Problem statement
+{: .no_toc }
+
+
+### Decision
+{: .no_toc }
+
+
+### Regarded options
+{: .no_toc }
+
+---
+
+## 05: ----
+
+
+### Meta
+{: .no_toc }
+Status
+: **Work in progress** - Decided 
+
+Updated
+: 11-01-2024
+
+### Problem statement
+{: .no_toc }
+
+
+### Decision
+{: .no_toc }
+
+
+### Regarded options
+{: .no_toc }
