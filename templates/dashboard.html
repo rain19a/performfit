@@ -4,84 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
-            padding: 20px;
-        }
-        h1 {
-            text-align: center;
-        }
-        form {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            width: 300px;
-            margin: auto;
-        }
-        label {
-            display: block;
-            margin: 10px 0;
-        }
-        .checkbox-group {
-            margin: 5px 0;
-        }
-        .navigation {
-            text-align: center;
-            margin-top: 20px;
-        }
-        a {
-            display: inline-block;
-            margin: 0 10px;
-            text-decoration: none;
-            color: #007bff;
-            background-color: #e7e7e7;
-            border: 1px solid #ddd;
-            padding: 10px 15px;
-            border-radius: 5px;
-        }
-        a:hover {
-            background-color: #ddd;
-        }
-        .logout {
-            display: block;
-            margin-top: 20px;
-            text-align: right;
-        }
-        .logout a {
-            color: #fff;
-            background-color: #f44336;
-        }
-        .logout a:hover {
-            background-color: #d32f2f;
-        }
-    </style>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="logout">
-        <a href="/logout">Logout</a>
-    </div>
-    <h1>Dein Dashboard</h1>
-    <form action="{{ url_for('dashboard') }}" method="post">
-        <div class="checkbox-group">
-            <input type="checkbox" name="workout" id="workout">
-            <label for="workout">Hast du dein Workout heute geschafft?</label>
+    <div class="container mt-5">
+        <div class="logout text-right mb-3">
+            <a href="/logout" class="btn btn-danger">Logout</a>
         </div>
+        <h1 class="text-center mb-4">Dein Dashboard</h1>
+        <form action="{{ url_for('dashboard') }}" method="post" class="card p-4 mx-auto" style="max-width: 400px;">
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" name="workout" id="workout">
+                <label class="form-check-label" for="workout">Hast du dein Workout heute geschafft?</label>
+            </div>
 
-        <div class="checkbox-group">
-            <input type="checkbox" name="sleep" id="sleep">
-            <label for="sleep">Hast du gut geschlafen?</label>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" name="sleep" id="sleep">
+                <label class="form-check-label" for="sleep">Hast du gut geschlafen?</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+        <div class="navigation text-center mt-4">
+            <a href="/workoutplan" class="btn btn-outline-primary mr-2">Workout-Plan</a>
+            <a href="/dashboard" class="btn btn-outline-secondary mr-2">Dashboard</a>
+            <a href="/fortschritt" class="btn btn-outline-success">Fortschritt</a>
         </div>
-
-        <input type="submit" value="Submit">
-    </form>
-
-    <div class="navigation">
-        <a href="/workoutplan">Workout-Plan</a>
-        <a href="/dashboard">Dashboard</a>
-        <a href="/fortschritt">Fortschritt</a>
     </div>
+    <!-- Optional JavaScript; choose one of the two! -->
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-</html> 
+</html>
 
