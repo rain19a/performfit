@@ -19,7 +19,7 @@ nav_order: 4
 ## 01: Reaktion von Fehlermeldungen der Registrierungsseite
 
 ### Meta
-
+{: .no_toc }
 Status
 : Done
 
@@ -27,21 +27,21 @@ Updated
 : 02-02-2024
 
 ### Goal
-
+{: .no_toc }
 Das Ziel dieser Bewertung war es, die Wirksamkeit und Benutzerfreundlichkeit des Registrierungsprozesses zu überprüfen, um sicherzustellen, dass Nutzer ohne Hindernisse ein Konto erstellen können.
 
 ### Method
-
+{: .no_toc }
 Eine Code-Inspektion und ein simulierter Durchlauf des Registrierungsvorgangs wurden durchgeführt. Kubilay hat den Registrierungsprozess mehrmals durchgespielt, um mögliche Fehlerquellen und Unklarheiten im Prozess zu identifizieren.
 
 ### Results
-
+{: .no_toc }
 Die Überprüfung zeigte, dass der Prozess im Großen und Ganzen klar und einfach zu befolgen ist. Allerdings sind die Fehlermeldungen bezüglich der E-Mail-Adresse nicht immer präzise. Insbesondere fehlt eine klare Anweisung oder Rückmeldung, wenn Nutzer eine inkorrekte E-Mail-Formatierung verwenden. 
 
 Was zu Verwirrung führen und die Registrierung unnötig verkomplizieren kann. Zudem wurde festgestellt, dass es keine deutlichen Hinweise zu den Passwortanforderungen gibt, was die Sicherheit der Konten beeinträchtigen und zu Frustration bei den Nutzern führen kann, wenn ihre Passwörter bei der Erstanmeldung abgelehnt werden.
 
 ### Implications
-
+{: .no_toc }
 Basierend auf diesen Erkenntnissen wird dringend empfohlen, die Fehlermeldungen zu verbessern, insbesondere durch die Einführung klarer Hinweise zur korrekten E-Mail-Formatierung. Ein Formatierungscheck sollte implementiert werden, der in Echtzeit Feedback gibt, sobald das E-Mail-Feld den Fokus verliert. 
 
 Dies würde Nutzern sofortige Rückmeldung geben und die Benutzererfahrung erheblich verbessern. Ebenso sollten klare Richtlinien und Anforderungen für die Passworterstellung direkt auf der Registrierungsseite angezeigt werden, um die Nutzer über die Sicherheitsanforderungen aufzuklären. Diese Änderungen könnten dazu beitragen, die Abbruchrate zu verringern und die allgemeine Zufriedenheit und Sicherheit der Nutzer zu erhöhen.
@@ -51,7 +51,7 @@ Dies würde Nutzern sofortige Rückmeldung geben und die Benutzererfahrung erheb
 ## 02: Passwortwiederherstellung im LoginProzes
 
 ### Meta
-
+{: .no_toc }
 Status
 : Obsolete
 
