@@ -21,5 +21,5 @@ nav_order: 6
 
 ## Abbildungsverzeichnis
 
-1. KI generiertes Bild für das Starbildschirm: [chat.gpt](https://chat.openai.com/), letzer Zugriff 20.12.2023
+1. KI generiertes Bild für den Starbildschirm: [chat.gpt](https://chat.openai.com/), letzer Zugriff 20.12.2023
    

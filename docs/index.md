@@ -7,7 +7,7 @@ nav_order: 0
 
 Willkommen zur offiziellen Dokumentation von PerformFit, Ihrer innovativen Lösung für digitales Fitness-Tracking und -Management. Dieser Leitfaden bietet einen umfassenden Überblick über die Funktionen und den Einsatz der PerformFit-App sowie Anleitungen zur Nutzung und Entwicklung.
 
-# Was ist eigentlich PerformFit ?
+## Was ist eigentlich PerformFit ?
 
 PerformFit transformiert Deine Fitnessroutine durch Eigeninitiative und Motivation. Unsere App kombiniert eine intuitive Oberfläche mit einem innovativen Grid-Graphen, die es Dir ermöglichen, Workouts selbst einzutragen und Fortschritte visuell zu verfolgen. Wir fördern Selbstbestimmung und kontinuierlichen Antrieb, damit Du Deine Ziele nicht nur erreichst, sondern übertriffst. 
 PerformFit – Dein Weg, Dein Tempo, Dein Erfolg
