@@ -48,20 +48,12 @@ class Progress(db.Model):
     def __repr__(self):
         return f'<Progress {self.user_id} {self.date} Slept: {self.slept_well} Workout: {self.workout_completed}>'
 
-class WorkoutDay(db.Model):
+class Training(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    day_name = db.Column(db.String(50), nullable=False)
-    exercise_name = db.Column(db.String(100), nullable=True)  # Neues Feld für den Trainingsnamen
-    user = db.relationship('User', backref=db.backref('workout_days', lazy=True))
+    name = db.Column(db.String(128), nullable=False, unique=True)
 
-class Workout(db.Model):
+class TrainingDay(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    workout_day_id = db.Column(db.Integer, db.ForeignKey('workout_day.id'), nullable=False)
-    exercise_name = db.Column(db.String(100), nullable=False)
-    sets = db.Column(db.Integer, nullable=False)
-    repetitions = db.Column(db.Integer, nullable=False)
-    weight = db.Column(db.Float, nullable=False)
-    workout_day = db.relationship('WorkoutDay', backref=db.backref('workouts', lazy=True))
-
-
+    day = db.Column(db.String(10), nullable=False)  # Montag bis Sonntag
+    training_id = db.Column(db.Integer, db.ForeignKey('training.id'), nullable=False)
+    training = db.relationship('Training', backref=db.backref('training_days', lazy=True))
