@@ -19,10 +19,11 @@ nav_order: 3
 
 ---
 
-## Datenbankdesign für Workout-Informationen
+## 01.Datenbankdesign für Workout-Informationen
 
 ### Meta
 {: .no_toc }
+
 - **Status:** Fertig - Entschieden
 - **Aktualisiert am:** 11.01.2024
 
@@ -49,7 +50,7 @@ Basierend auf der Abwägung von Vor- und Nachteilen wurde beschlossen, die Attri
 
 ---
 
-## Gridgraph-Visualisierung für Workout-Fortschritt
+## 02.Gridgraph-Visualisierung für Workout-Fortschritt
 
 ### Meta
 {: .no_toc }
@@ -84,27 +85,37 @@ Um die Komplexität zu reduzieren und den Überblick zu bewahren, wurde eine ein
 
 ---
 
-## 03: Gridgraph-Visualisierung - Farbwahl
-
+## 03. Auswahl des Bootstrap-Frameworks für eine bessere Benutzeroberfläche
 
 ### Meta
 {: .no_toc }
-Status
-: **Work in progress** - Decided 
+- **Status:** Fertig - Entschieden
+- **Aktualisiert am:** 05.02.2024
 
-Updated
-: 11-01-2024
-
-### Problem statement
+### Problemstellung
 {: .no_toc }
+Die Auswahl eines Frontend-Frameworks war entscheidend, um unseren Nutzern eine ansprechende und intuitive Benutzeroberfläche zu bieten. Wir benötigten ein Framework, das sowohl flexibel als auch mächtig ist, um unsere Designvisionen umzusetzen.
 
-
-### Decision
+### Entscheidung
 {: .no_toc }
+Nach der Bewertung mehrerer Optionen haben wir uns für Bootstrap entschieden. Bootstrap bietet eine umfangreiche Sammlung vordefinierter Komponenten, die nicht nur die Entwicklung beschleunigen, sondern auch sicherstellen, dass die Anwendung auf verschiedenen Geräten gut aussieht und funktioniert. Es wurde als die beste Wahl angesehen, um unsere ästhetischen Anforderungen zu erfüllen und die Benutzererfahrung zu verbessern.
 
-
-### Regarded options
+### Betrachtete Optionen
 {: .no_toc }
+- **Material Design:**
+  - **Vorteil:** Modernes und konsistentes Design.
+  - **Nachteil:** Möglicherweise weniger Anpassungsfähigkeit für spezifische Designanforderungen.
+- **Foundation:**
+  - **Vorteil:** Flexibles Grid-System und anpassungsfähige Komponenten.
+  - **Nachteil:** Steilere Lernkurve im Vergleich zu Bootstrap.
+- **Bootstrap:**
+  - **Vorteil:** Weit verbreitet, reaktionsfähig und intuitiv.
+  - **Nachteil:** Standard-Bootstrap-Themen können zu ähnlich aussehenden Websites führen.
+
+### Umsetzung
+{: .no_toc }
+Bootstrap wurde in unser Entwicklungsworkflow integriert, um die Benutzeroberfläche zu standardisieren und zu verfeinern. Zusätzlich wurde ein Theme angepasst, um ein einzigartiges Aussehen zu gewährleisten, das sich von Standard-Bootstrap-Designs unterscheidet.
+
 
 ---
 
