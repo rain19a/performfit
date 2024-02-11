@@ -59,7 +59,6 @@ Die Anwendung wird unter http://localhost:5000/ gestartet.
 
 - **app.py**: Hauptdatei der Flask-Anwendung.
 - **db.py**: Konfiguration der Datenbank.
-- **models.py**: Definitionen der Datenbankmodelle.
 - **templates/**: HTML-Vorlagen für die Benutzeroberfläche.
 - **static/**: Statische Dateien wie CSS, JavaScript und Bilder.
 
