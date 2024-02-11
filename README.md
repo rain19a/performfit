@@ -15,11 +15,12 @@ PerformFit ist mehr als nur eine Fitness-App – es ist Ihr persönlicher Traine
 
 Unsere Features die wir in der PerformFit-Web haben:
 
-1. **Registrieren:** Erstellen Sie Ihr PerformFit-Konto.
-2. **Fragekatalog:** Setzen Sie Ihre Fitnessziele.
-3. **Dashboard:** Entdecken Sie Ihr personalisiertes Dashboard.
-4. **Workout:** Beginnen Sie mit Ihrem ersten Workout.
-5. **Fortschritt:** Verfolgen Sie Ihren Fortschritt und setzen Sie neue Ziele.
+1. **Login:** Loggen Sie sich in Ihr PerformFit-Konto ein.
+2. **Registrieren:** Erstellen Sie Ihr PerformFit-Konto, wenn Sie noch keins haben.
+3. **Fragekatalog:** Tragen Sie Ihr Gewicht ein und entscheiden Sie, wo die Reise in Zukunft hingeht.
+4. **Dashboard:** Bewerten Sie Ihr Training und Ihren Schlaf auf.
+5. **Workout:** Beginnen Sie mit Ihrem ersten Workout.
+6. **Fortschritt:** Verfolgen Sie Ihren Fortschritt und setzen Sie neue Ziele.
 
 
 ## Installation
