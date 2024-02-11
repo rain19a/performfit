@@ -30,7 +30,7 @@ git clone https://github.com/rain19a/performfit.git
 
 2. Wechsle in das Projektverzeichnis:
 ```
-cd performfit
+cd webapp
 ```
 3. Erstelle und aktiviere eine virtuelle Umgebung :
 ```
@@ -43,7 +43,7 @@ pip install -r requirements.txt
 ```
 5. Führe die Anwendung aus:
 ```
-python app.py
+flask run oder python app.py
 ```
 Die Anwendung wird unter http://localhost:5000/ gestartet.
 
