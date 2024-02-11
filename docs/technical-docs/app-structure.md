@@ -24,13 +24,16 @@ Diese Dokumentation bietet eine strukturelle Übersicht der PerformFit-App, um e
 ## 2. Datenbankarchitektur und Benutzerregistrierung
 Die Datenbankarchitektur umfasst ein User-Modell, welches die E-Mail-Adresse, den gewünschten Benutzernamen und das verschlüsselte Passwort speichert. Dieses Modell unterstützt den Registrierungsprozess, indem es neue Nutzer dazu auffordert, diese Informationen bereitzustellen:
 
-<pre lang="no-highlight"><code>```python
-def function():
-class User(db.Model):
+<pre lang="no-highlight"><code>
+class User(UserMixin, db.Model):
+    __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    username = db.Column(db.String(80), unique=True, nullable=False)
-    password_hash = db.Column(db.String(128))
+    name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(100), unique=True, nullable=False)
+    username = db.Column(db.String(100), unique=True, nullable=False)
+    password_hash = db.Column(db.String(200), nullable=False)
+    gewicht = db.Column(db.Float, nullable=True)
+    zielgewicht = db.Column(db.Float, nullable=True)
 
 </code></pre>
 
