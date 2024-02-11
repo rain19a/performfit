@@ -46,7 +46,7 @@ pip install -r requirements.txt
 
 5. Führe die Anwendung aus:
 
-python app.py
+flask run oder python app.py
 
 
 Die Anwendung wird unter http://localhost:5000/ gestartet.
