@@ -25,6 +25,8 @@ Diese Dokumentation bietet eine strukturelle Übersicht der PerformFit-App, um e
 Die Datenbankarchitektur umfasst ein User-Modell, welches die E-Mail-Adresse, den gewünschten Benutzernamen und das verschlüsselte Passwort speichert. Dieses Modell unterstützt den Registrierungsprozess, indem es neue Nutzer dazu auffordert, diese Informationen bereitzustellen:
 
 <pre lang="no-highlight"><code>
+from flask_login import UserMixin
+
 class User(UserMixin, db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
@@ -43,8 +45,7 @@ Authentifizierungssystem und Login-View-Konfiguration
 Ein wesentlicher Bestandteil der App-Struktur ist das Authentifizierungssystem, das durch Flask-Login verwaltet wird. Flask-Login bietet eine einfache Schnittstelle für das Handling von Benutzersitzungen. Ein kritischer Punkt in der Konfiguration von Flask-Login ist die Definition von login_view, die angibt, welche Route geladen wird, wenn nicht-authentifizierte Benutzer auf eine Route zugreifen möchten, die eine Anmeldung erfordert.
 
 
-<pre lang="no-highlight"><code>```python
-def function():
+<pre lang="no-highlight"><code>
 from flask_login import LoginManager
 
 login_manager = LoginManager()
@@ -57,8 +58,7 @@ LoginManager(): Erstellt eine Instanz von Flask-Login's LoginManager, der für d
 init_app(app): Initialisiert den LoginManager mit der Flask-Anwendung. Dies ermöglicht es Flask-Login, mit der Anwendungsinstanz zu interagieren.
 login_view = 'login': Legt fest, dass Benutzer zur Route mit dem Endpunkt login umgeleitet werden, wenn sie versuchen, auf eine geschützte Seite zuzugreifen, ohne eingeloggt zu sein. Dies ist ein kritischer Aspekt der Benutzerführung und Sicherheit, da es sicherstellt, dass nur authentifizierte Benutzer Zugriff auf bestimmte Bereiche der Anwendung haben.
 
-<pre lang="no-highlight"><code>```python
-def function():
+<pre lang="no-highlight"><code>
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -82,8 +82,7 @@ Weiterleitung: Authentifizierte Benutzer werden zum Dashboard weitergeleitet, w�
 ## 3. Fragekatalog-Implementierung
 Nach der Registrierung interagiert der Benutzer mit dem User-Modell durch einen Fragekatalog, der das aktuelle Gewicht und das Zielgewicht erfasst. Dies wird durch zusätzliche Attribute im User-Modell reflektiert, die mit den entsprechenden Benutzerdaten besetzt werden:
 
-<pre lang="no-highlight"><code>```python
-def function():
+<pre lang="no-highlight"><code>
 class User(db.Model):
     # ...
     current_weight = db.Column(db.Float)
@@ -95,8 +94,7 @@ class User(db.Model):
 ## 4. Dashboard-Struktur
 Das Dashboard ist als zentrale Anlaufstelle nach dem Login konzipiert und bietet Schnellzugriff auf Hauptfunktionen wie den Workoutplan und den Fortschrittstracker. Dies wird durch eine spezifische Route und zugehörige View-Funktion in Flask ermöglicht:
 
-<pre lang="no-highlight"><code>```python
-def function():
+<pre lang="no-highlight"><code>
    
 @app.route('/dashboard', methods=['GET'])
 @login_required
@@ -109,8 +107,7 @@ def dashboard():
 ## 5. Workoutplan-Architektur
 Die Workoutplan-Funktion ermöglicht es Benutzern, ihre Trainingsdaten einzugeben. Dies könnte durch ein spezifisches Modell für Workouts unterstützt werden, welches mit dem Benutzermodell verknüpft ist, dabei sind Informationen wie der Tag der Übung, die Art der Übung, Wiederholungen, Sätze und eine Notiz über das Workout von Wichtigkeit und wird dies im Bereich Workout erfasst:
 
-<pre lang="no-highlight"><code>```python
-def function():
+<pre lang="no-highlight"><code>
 class Workout(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
@@ -126,8 +123,7 @@ class Workout(db.Model):
 ## 6. Fortschrittstracker-Struktur
 Der Fortschrittstracker ist durch das Progress-Modell realisiert, das eine visuelle Darstellung des Trainingsfortschritts ermöglicht. Es wird durch eine GET-Route bedient, die das entsprechende Template mit Daten versorgt:
 
-<pre lang="no-highlight"><code>```python
-def function():
+<pre lang="no-highlight"><code>
 class Progress(db.Model):
     ...
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
