@@ -31,7 +31,7 @@ git clone https://github.com/rain19a/performfit.git
 
 2. Wechsle in das Projektverzeichnis:
 
-cd performfit
+cd webapp
 
 
 3. Erstelle und aktiviere eine virtuelle Umgebung :
